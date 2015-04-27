@@ -1,0 +1,10 @@
+.bar.bar-header
+  .title
+    span.fa.fa-binoculars.fa-rotate-90.fa-spin
+    strong
+    | &nbsp;Dr. Track
+.dashboard
+  .list.list-inset.center.content.has-header
+    .item(ng-repeat='dashboardOption in dashboardOptions track by $index') {{dashboardOption}}
+.bar.bar-footer.bar-balanced
+  .title Dashboard
