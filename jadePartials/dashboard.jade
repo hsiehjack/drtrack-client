@@ -5,6 +5,6 @@ ion-header-bar.bar-positive(align-title='center')
     | &nbsp;Dr. Track
 ion-content.center
   ion-list
-    ion-item(ng-repeat='dashboardOption in dashboardOptions track by $index') {{dashboardOption}}
+    ion-item(ng-repeat='dashboardOption in dashboardOptions track by $index', href='#/{{dashboardOption.page}}') {{dashboardOption['name']}}
 ion-footer-bar.bar-positive(align-title='center')
   .title Dashboard

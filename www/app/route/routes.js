@@ -8,6 +8,10 @@ app.config(function($routeProvider) {
       templateUrl: 'partials/dashboard.html',
       controller: 'userCtrl'
     })
+    .when('/checkin', {
+      templateUrl: 'partials/checkin.html',
+      controller: 'barcodeCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
