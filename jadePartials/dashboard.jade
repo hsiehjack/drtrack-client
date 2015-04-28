@@ -1,10 +1,10 @@
-.bar.bar-header
+ion-header-bar.bar-positive(align-title='center')
   .title
     span.fa.fa-binoculars.fa-rotate-90.fa-spin
     strong
     | &nbsp;Dr. Track
-.dashboard
-  .list.list-inset.center.content.has-header
-    .item(ng-repeat='dashboardOption in dashboardOptions track by $index') {{dashboardOption}}
-.bar.bar-footer.bar-balanced
+ion-content.center
+  ion-list
+    ion-item(ng-repeat='dashboardOption in dashboardOptions track by $index') {{dashboardOption}}
+ion-footer-bar.bar-positive(align-title='center')
   .title Dashboard

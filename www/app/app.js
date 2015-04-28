@@ -1,4 +1,4 @@
-var app = angular.module('drtrack', ['ionic', 'ngRoute']);
+var app = angular.module('drtrack', ['ionic', 'ngRoute', 'ui.bootstrap']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
