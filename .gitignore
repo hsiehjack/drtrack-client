@@ -4,5 +4,4 @@
 node_modules/
 platforms/
 plugins/
-
-www/partials
+www/lib/angular

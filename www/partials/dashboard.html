@@ -1,0 +1,12 @@
+
+<ion-header-bar align-title="center" class="bar-positive">
+  <div class="title"><span class="fa fa-binoculars fa-rotate-90 fa-spin"></span><strong></strong>&nbsp;Dr. Track</div>
+</ion-header-bar>
+<ion-content class="center">
+  <ion-list>
+    <ion-item ng-repeat="dashboardOption in dashboardOptions track by $index" href="#/{{dashboardOption.page}}">{{dashboardOption['name']}}</ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer-bar align-title="center" class="bar-positive">
+  <div class="title">Dashboard</div>
+</ion-footer-bar>
