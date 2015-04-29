@@ -8,7 +8,11 @@ app.config(function($routeProvider) {
       templateUrl: 'partials/dashboard.html',
       controller: 'userCtrl'
     })
-    .when('/checkin', {
+    .when('/evacuee', {
+      templateUrl: 'partials/evacuee.html',
+      controller: 'userCtrl'
+    })
+    .when('/check-in', {
       templateUrl: 'partials/checkin.html',
       controller: 'barcodeCtrl'
     })

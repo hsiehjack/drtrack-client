@@ -1,0 +1,64 @@
+
+<ion-header-bar align-title="center" class="bar-positive"><strong class="title">{{selection.title}}</strong></ion-header-bar>
+<ion-content>
+  <form class="form-horizontal">
+    <ng-switch on="selection.step">
+      <div ng-switch-when="step1">
+        <tabset>
+          <tab heading="PP">
+            <div class="list">
+              <label class="item item-input">
+                <input type="text" ng-model="evacuee.passport" placeholder="Passport ID"/>
+              </label>
+            </div>
+          </tab>
+          <tab heading="DL">
+            <div class="list">
+              <label class="item item-input">
+                <input type="text" ng-model="evacuee.driverLic" placeholder="Driver License"/>
+              </label>
+            </div>
+          </tab>
+          <tab heading="SSN">
+            <div class="list">
+              <label class="item item-input">
+                <input type="text" ng-model="evacuee.ssn" placeholder="SSN #"/>
+              </label>
+            </div>
+          </tab>
+        </tabset>
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" ng-model="evacuee.firstName" placeholder="First Name"/>
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="evacuee.middleName" placeholder="Middle Name"/>
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="evacuee.lastName" placeholder="Last Name"/>
+          </label>
+          <label class="item item-input">
+            <input type="date" ng-model="evacuee.dob"/>
+          </label>
+          <div class="row">
+            <label class="item item-radio col col-50">
+              <input type="radio" ng-model="evacuee.gender" name="gender" value="male" class="button-light"/>
+              <div class="item-content">Male</div><i class="radio-icon ion-checkmark"></i>
+            </label>
+            <label class="item item-radio col col-50">
+              <input type="radio" ng-model="evacuee.gender" name="gender" value="female" class="button-light"/>
+              <div class="item-content">Female</div><i class="radio-icon ion-checkmark"> </i>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div ng-switch-when="step2"><span>I'm here</span></div>
+    </ng-switch>
+    <div class="clearfix"></div>
+    <ul class="padding">
+      <li ng-class="{disabled: !hasPreviousStep()}" class="pull-left"><a ng-click="decrementStep()" class="button icon-left ion-chevron-left button-stable">Previous</a></li>
+      <li ng-class="{diabled: !hasNextStep()}" class="pull-right"><a ng-click="incrementStep()" class="button icon-right ion-chevron-right button-stable">Next</a></li>
+    </ul>
+  </form>
+</ion-content>
+<ion-footer-bar class="bar-positive"></ion-footer-bar>

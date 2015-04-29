@@ -1,0 +1,47 @@
+ion-header-bar.bar-positive(align-title='center')
+  strong.title {{selection.title}}
+ion-content
+  form.form-horizontal
+    ng-switch(on='selection.step')
+      div(ng-switch-when='step1')
+        tabset
+          tab(heading='PP')
+            .list
+              label.item.item-input
+                input(type='text', ng-model='evacuee.passport', placeholder='Passport ID')
+          tab(heading='DL')
+            .list
+              label.item.item-input
+                input(type='text', ng-model='evacuee.driverLic', placeholder='Driver License')
+          tab(heading='SSN')
+            .list
+              label.item.item-input
+                input(type='text', ng-model='evacuee.ssn', placeholder='SSN #')
+        .list
+          label.item.item-input
+            input(type='text', ng-model='evacuee.firstName', placeholder='First Name')
+          label.item.item-input
+            input(type='text', ng-model='evacuee.middleName', placeholder='Middle Name')
+          label.item.item-input
+            input(type='text', ng-model='evacuee.lastName', placeholder='Last Name')
+          label.item.item-input
+            input(type='date', ng-model='evacuee.dob')
+          div.row
+            label.item.item-radio.col.col-50
+              input.button-light(type='radio', ng-model='evacuee.gender', name='gender', value='male')
+              div.item-content Male
+              i.radio-icon.ion-checkmark
+            label.item.item-radio.col.col-50
+              input.button-light(type='radio', ng-model='evacuee.gender', name='gender', value='female')
+              div.item-content Female
+              i.radio-icon.ion-checkmark 
+      div(ng-switch-when='step2')
+        span I'm here
+    .clearfix
+    ul.padding
+      li.pull-left(ng-class='{disabled: !hasPreviousStep()}', class='')
+        a.button.icon-left.ion-chevron-left.button-stable(ng-click='decrementStep()') Previous
+      li.pull-right(ng-class='{diabled: !hasNextStep()}', class='')
+        a.button.icon-right.ion-chevron-right.button-stable(ng-click='incrementStep()') Next
+        
+ion-footer-bar.bar-positive

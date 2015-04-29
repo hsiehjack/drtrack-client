@@ -4,7 +4,7 @@
 </ion-header-bar>
 <ion-content class="center">
   <ion-list>
-    <ion-item ng-repeat="dashboardOption in dashboardOptions track by $index" href="#/{{dashboardOption.page}}">{{dashboardOption['name']}}</ion-item>
+    <ion-item ng-repeat="dashboardOption in dashboardOptions track by $index" href="#/{{dashboardOption.name | lowercase}}" class="item-icon-left"> <i class="{{dashboardOption.icon}}"></i>{{dashboardOption.name}}</ion-item>
   </ion-list>
 </ion-content>
 <ion-footer-bar align-title="center" class="bar-positive">
