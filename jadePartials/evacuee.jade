@@ -25,23 +25,16 @@ ion-content
           label.item.item-input
             input(type='text', ng-model='evacuee.lastName', placeholder='Last Name')
           label.item.item-input
-            input(type='date', ng-model='evacuee.dob')
-          div.row
-            label.item.item-radio.col.col-50
-              input.button-light(type='radio', ng-model='evacuee.gender', name='gender', value='male')
-              div.item-content Male
-              i.radio-icon.ion-checkmark
-            label.item.item-radio.col.col-50
-              input.button-light(type='radio', ng-model='evacuee.gender', name='gender', value='female')
-              div.item-content Female
-              i.radio-icon.ion-checkmark 
+            input(type='text', ng-model='evacuee.dob', placeholder='Date of Birth', pick-a-date='date', pick-a-date-options='dateOptions')
+          ion-radio.col.col-50.gender(value='Male', ng-model='evacuee.gender') Male
+          ion-radio.col.col-50.gender(value='Female', ng-model='evacuee.gender') Female
       div(ng-switch-when='step2')
         span I'm here
     .clearfix
     ul.padding
-      li.pull-left(ng-class='{disabled: !hasPreviousStep()}', class='')
-        a.button.icon-left.ion-chevron-left.button-stable(ng-click='decrementStep()') Previous
-      li.pull-right(ng-class='{diabled: !hasNextStep()}', class='')
-        a.button.icon-right.ion-chevron-right.button-stable(ng-click='incrementStep()') Next
+      li.pull-left
+        a.button.icon-left.ion-chevron-left.button-stable(ng-click='decrementStep()', ng-class='{disabled: !hasPreviousStep()}', class='') Previous
+      li.pull-right
+        a.button.icon-right.ion-chevron-right.button-stable(ng-click='incrementStep()', ng-class='{diabled: !hasNextStep()}', class='') Next
         
 ion-footer-bar.bar-positive

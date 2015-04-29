@@ -38,26 +38,18 @@
             <input type="text" ng-model="evacuee.lastName" placeholder="Last Name"/>
           </label>
           <label class="item item-input">
-            <input type="date" ng-model="evacuee.dob"/>
+            <input type="text" ng-model="evacuee.dob" placeholder="Date of Birth" pick-a-date="date" pick-a-date-options="dateOptions"/>
           </label>
-          <div class="row">
-            <label class="item item-radio col col-50">
-              <input type="radio" ng-model="evacuee.gender" name="gender" value="male" class="button-light"/>
-              <div class="item-content">Male</div><i class="radio-icon ion-checkmark"></i>
-            </label>
-            <label class="item item-radio col col-50">
-              <input type="radio" ng-model="evacuee.gender" name="gender" value="female" class="button-light"/>
-              <div class="item-content">Female</div><i class="radio-icon ion-checkmark"> </i>
-            </label>
-          </div>
+          <ion-radio value="Male" ng-model="evacuee.gender" class="col col-50 gender">Male</ion-radio>
+          <ion-radio value="Female" ng-model="evacuee.gender" class="col col-50 gender">Female</ion-radio>
         </div>
       </div>
       <div ng-switch-when="step2"><span>I'm here</span></div>
     </ng-switch>
     <div class="clearfix"></div>
     <ul class="padding">
-      <li ng-class="{disabled: !hasPreviousStep()}" class="pull-left"><a ng-click="decrementStep()" class="button icon-left ion-chevron-left button-stable">Previous</a></li>
-      <li ng-class="{diabled: !hasNextStep()}" class="pull-right"><a ng-click="incrementStep()" class="button icon-right ion-chevron-right button-stable">Next</a></li>
+      <li class="pull-left"><a ng-click="decrementStep()" ng-class="{disabled: !hasPreviousStep()}" class="button icon-left ion-chevron-left button-stable">Previous</a></li>
+      <li class="pull-right"><a ng-click="incrementStep()" ng-class="{diabled: !hasNextStep()}" class="button icon-right ion-chevron-right button-stable">Next</a></li>
     </ul>
   </form>
 </ion-content>
