@@ -1,4 +1,4 @@
-var app = angular.module('drtrack', ['ionic', 'ngRoute', 'ui.bootstrap', 'ngCordova', 'angular-datepicker']);
+var app = angular.module('drtrack', ['ionic', 'ngRoute', 'ui.bootstrap', 'ngCordova', 'angular-datepicker', 'autocomplete']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

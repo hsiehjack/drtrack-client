@@ -29,12 +29,12 @@ ion-content
           ion-radio.col.col-50.gender(value='Male', ng-model='evacuee.gender') Male
           ion-radio.col.col-50.gender(value='Female', ng-model='evacuee.gender') Female
       div(ng-switch-when='step2')
-        span I'm here
+        autocomplete.list-group-item(ng-model='evacuee.nationality', data='nationalities', on-type='getNationality', attr-placeholder='Select a Nationality')
     .clearfix
     ul.padding
       li.pull-left
         a.button.icon-left.ion-chevron-left.button-stable(ng-click='decrementStep()', ng-class='{disabled: !hasPreviousStep()}', class='') Previous
       li.pull-right
-        a.button.icon-right.ion-chevron-right.button-stable(ng-click='incrementStep()', ng-class='{diabled: !hasNextStep()}', class='') Next
-        
+        a.button.icon-right.ion-chevron-right.button-stable(ng-click='incrementStep()', ng-class='{disabled: !hasNextStep()}', class='') Next
+
 ion-footer-bar.bar-positive

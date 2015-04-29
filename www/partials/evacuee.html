@@ -44,12 +44,14 @@
           <ion-radio value="Female" ng-model="evacuee.gender" class="col col-50 gender">Female</ion-radio>
         </div>
       </div>
-      <div ng-switch-when="step2"><span>I'm here</span></div>
+      <div ng-switch-when="step2">
+        <autocomplete ng-model="evacuee.nationality" data="nationalities" on-type="getNationality" attr-placeholder="Select a Nationality" class="list-group-item"></autocomplete>
+      </div>
     </ng-switch>
     <div class="clearfix"></div>
     <ul class="padding">
       <li class="pull-left"><a ng-click="decrementStep()" ng-class="{disabled: !hasPreviousStep()}" class="button icon-left ion-chevron-left button-stable">Previous</a></li>
-      <li class="pull-right"><a ng-click="incrementStep()" ng-class="{diabled: !hasNextStep()}" class="button icon-right ion-chevron-right button-stable">Next</a></li>
+      <li class="pull-right"><a ng-click="incrementStep()" ng-class="{disabled: !hasNextStep()}" class="button icon-right ion-chevron-right button-stable">Next</a></li>
     </ul>
   </form>
 </ion-content>
