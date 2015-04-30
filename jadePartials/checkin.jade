@@ -1,3 +1,18 @@
 ion-content.center
-  button.button(ng-click='scanBarcode()') Scan
+  .row.clearBootstrap
+    .col
+      code-scan
+  form
+    //- .row.clearBootstrap
+    .item.item-input.inset.row.clearBootstrap
+      label.item-input.wrapper.col.col-75
+        input(type='number', ng-model='evacuee.code', placeholder='Bracelet ID' required)
+      a.button.button-energized.col(ng-click='manualCheckin()') Add
+      //- input.col.col-75.form-control(type='number', ng-model='evacuee.code', placeholder='Bracelet ID' required)
+      //- a.button.button-energized.col(ng-click='manualCheckin()') Add
+  ion-list
+    ion-item(ng-repeat='scanData in scanDatas track by $index')
+      .row.clearBootstrap
+        .col.col-50 {{scanData.text}}
+        .col.col-50 {{scanData.format}}
 bottom-nav

@@ -4,7 +4,8 @@ app.controller('loginCtrl', function($scope) {
 app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
   $ionicPlatform.registerBackButtonAction(function () {
     navigator.app.backHistory();
-  }, 100);  
+  }, 100);
+
   $scope.nationalities = [
     'Afghan',
     'Albanian',
@@ -252,16 +253,14 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
   $scope.evacuee = {};
   $scope.selection = $scope.steps[0];
 });
-app.controller('barcodeCtrl', function($scope, $ionicPlatform, $cordovaBarcodeScanner) {
-  $ionicPlatform.ready(function() {
-    $scope.scanBarcode = function() {
-      $cordovaBarcodeScanner.scan().then(function(imageData) {
-        alert(imageData.text);
-        alert("Barcode Format -> " + imageData.format);
-        alert("Cancelled -> " + imageData.cancelled);
-      }, function(error) {
-        alert("An error happend -> " + error);
-      });
-    };
-  });
+
+app.controller('barcodeCtrl', function($scope, $ionicPopup) {
+  $scope.evacuee = {};
+  $scope.scanDatas = [];
+  $scope.manualCheckin = function() {
+    if ($scope.evacuee.code) {
+      $scope.scanDatas.push({'text': $scope.evacuee.code, 'format': 'Manual Add'});
+      angular.copy($scope.initial, $scope.evacuee);
+    }
+  };
 });
