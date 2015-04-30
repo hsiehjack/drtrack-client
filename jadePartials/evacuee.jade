@@ -38,16 +38,16 @@ form.form-horizontal(ng-submit='submitEvacuee()')
         ion-radio.col.col-50.inline-radio(value='Alien', ng-model='evacuee.majorCategory', name='majorCategory') Alien
         ion-radio.col.col-50.inline-radio(value='Other', ng-model='evacuee.majorCategory', name='majorCategory') Other
         .item.item-divider Minor Category
-        ion-radio.col.col-50.inline-radio(value='Pregnant Woman', ng-model='evacuee.minorCategory', name='minorCategory') Pregnant
-        ion-radio.col.col-50.inline-radio(value='Under 18', ng-model='evacuee.minorCategory', name='minorCategory') Under 18
+        ion-checkbox(value='Pregnant Woman', ng-model='evacuee.minorCategory.pregnant') Pregnant
+        ion-checkbox(value='Under 18', ng-model='evacuee.minorCategory.under') Under 18
     div(ng-switch-when='step3')
       .list
         .item.item-divider Military Satus
-        ion-radio.col.col-50.inline-radio(value='No DoD', ng-model='evacuee.militaryAfflicated', ng-init='evacuee.militaryAfflicated="No DoD"', name='militaryAfflicated') No DoD
-        ion-radio.col.col-50.inline-radio(value='Army', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Army
-        ion-radio.col.col-50.inline-radio(value='Navy', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Navy
-        ion-radio.col.col-50.inline-radio(value='Air Force', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Air Force
-        ion-radio.col.col-50.inline-radio(value='DoD Civilian', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') DoD Civilian
+        ion-radio(value='No DoD Afflicate', ng-model='evacuee.militaryAfflicated', ng-init='evacuee.militaryAfflicated="No DoD Afflicate"', name='militaryAfflicated') No DoD Afflicate
+        ion-radio(value='Army', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Army
+        ion-radio(value='Navy', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Navy
+        ion-radio(value='Air Force', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Air Force
+        ion-radio(value='DoD Civilian', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') DoD Civilian
     div(ng-switch-when='step4')
       .list
         .item.item-divider Blood Type
@@ -72,4 +72,4 @@ form.form-horizontal(ng-submit='submitEvacuee()')
     li.pull-right
       a.button.icon-right.ion-chevron-right.button-stable(ng-click='incrementStep()', ng-class='{disabled: !hasNextStep()}', class='', ng-hide='!hasNextStep()') Next
       a.button.icon-right.ion-checkmark-round.button-balanced(ng-hide='hasNextStep()', type='submit') Finish
-ion-footer-bar.bar-positive
+bottom-nav
