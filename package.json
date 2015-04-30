@@ -24,7 +24,7 @@
     "android"
   ],
   "scripts": {
-    "preinstall": "npm install -g bower grunt-cli cordova ionic",
+    "preinstall": "npm install -g bower grunt-cli",
     "postinstall": "bower install && ionic platform add android && cordova plugin add https://github.com/wildabeast/BarcodeScanner.git"
   }
 }
