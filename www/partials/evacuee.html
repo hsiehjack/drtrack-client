@@ -53,18 +53,18 @@
         <ion-radio value="Alien" ng-model="evacuee.majorCategory" name="majorCategory" class="col col-50 inline-radio">Alien</ion-radio>
         <ion-radio value="Other" ng-model="evacuee.majorCategory" name="majorCategory" class="col col-50 inline-radio">Other</ion-radio>
         <div class="item item-divider">Minor Category</div>
-        <ion-radio value="Pregnant Woman" ng-model="evacuee.minorCategory" name="minorCategory" class="col col-50 inline-radio">Pregnant</ion-radio>
-        <ion-radio value="Under 18" ng-model="evacuee.minorCategory" name="minorCategory" class="col col-50 inline-radio">Under 18</ion-radio>
+        <ion-checkbox value="Pregnant Woman" ng-model="evacuee.minorCategory.pregnant">Pregnant</ion-checkbox>
+        <ion-checkbox value="Under 18" ng-model="evacuee.minorCategory.under">Under 18</ion-checkbox>
       </div>
     </div>
     <div ng-switch-when="step3">
       <div class="list">
         <div class="item item-divider">Military Satus</div>
-        <ion-radio value="No DoD" ng-model="evacuee.militaryAfflicated" ng-init="evacuee.militaryAfflicated=&quot;No DoD&quot;" name="militaryAfflicated" class="col col-50 inline-radio">No DoD</ion-radio>
-        <ion-radio value="Army" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">Army</ion-radio>
-        <ion-radio value="Navy" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">Navy</ion-radio>
-        <ion-radio value="Air Force" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">Air Force</ion-radio>
-        <ion-radio value="DoD Civilian" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">DoD Civilian</ion-radio>
+        <ion-radio value="No DoD Afflicate" ng-model="evacuee.militaryAfflicated" ng-init="evacuee.militaryAfflicated=&quot;No DoD Afflicate&quot;" name="militaryAfflicated">No DoD Afflicate</ion-radio>
+        <ion-radio value="Army" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated">Army</ion-radio>
+        <ion-radio value="Navy" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated">Navy</ion-radio>
+        <ion-radio value="Air Force" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated">Air Force</ion-radio>
+        <ion-radio value="DoD Civilian" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated">DoD Civilian</ion-radio>
       </div>
     </div>
     <div ng-switch-when="step4">
@@ -96,4 +96,4 @@
     <li class="pull-right"><a ng-click="incrementStep()" ng-class="{disabled: !hasNextStep()}" ng-hide="!hasNextStep()" class="button icon-right ion-chevron-right button-stable">Next</a><a ng-hide="hasNextStep()" type="submit" class="button icon-right ion-checkmark-round button-balanced">Finish</a></li>
   </ul>
 </form>
-<ion-footer-bar class="bar-positive"></ion-footer-bar>
+<bottom-nav></bottom-nav>

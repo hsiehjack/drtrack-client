@@ -43,3 +43,11 @@ body, html {
 .col {
   padding: 0px;
 }
+
+.bar-footer .tabs-positive .tab-nav {
+  top: 0px;
+}
+
+.bar-footer {
+  padding: 0px;
+}
