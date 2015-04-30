@@ -1,58 +1,99 @@
 
-<ion-header-bar align-title="center" class="bar-positive"><strong class="title">{{selection.title}}</strong></ion-header-bar>
-<ion-content>
-  <form class="form-horizontal">
-    <ng-switch on="selection.step">
-      <div ng-switch-when="step1">
-        <tabset>
-          <tab heading="PP">
-            <div class="list">
-              <label class="item item-input">
-                <input type="text" ng-model="evacuee.passport" placeholder="Passport ID"/>
-              </label>
-            </div>
-          </tab>
-          <tab heading="DL">
-            <div class="list">
-              <label class="item item-input">
-                <input type="text" ng-model="evacuee.driverLic" placeholder="Driver License"/>
-              </label>
-            </div>
-          </tab>
-          <tab heading="SSN">
-            <div class="list">
-              <label class="item item-input">
-                <input type="text" ng-model="evacuee.ssn" placeholder="SSN #"/>
-              </label>
-            </div>
-          </tab>
-        </tabset>
-        <div class="list">
-          <label class="item item-input">
-            <input type="text" ng-model="evacuee.firstName" placeholder="First Name"/>
-          </label>
-          <label class="item item-input">
-            <input type="text" ng-model="evacuee.middleName" placeholder="Middle Name"/>
-          </label>
-          <label class="item item-input">
-            <input type="text" ng-model="evacuee.lastName" placeholder="Last Name"/>
-          </label>
-          <label class="item item-input">
-            <input type="text" ng-model="evacuee.dob" placeholder="Date of Birth" pick-a-date="date" pick-a-date-options="dateOptions"/>
-          </label>
-          <ion-radio value="Male" ng-model="evacuee.gender" class="col col-50 gender">Male</ion-radio>
-          <ion-radio value="Female" ng-model="evacuee.gender" class="col col-50 gender">Female</ion-radio>
-        </div>
+<form ng-submit="submitEvacuee()" class="form-horizontal">
+  <ng-switch on="selection.step">
+    <div ng-switch-when="step1">
+      <tabset id="evacueeID">
+        <tab heading="PP">
+          <div class="list">
+            <label class="item item-input">
+              <input type="text" ng-model="evacuee.passport" placeholder="Passport ID"/>
+            </label>
+          </div>
+        </tab>
+        <tab heading="DL">
+          <div class="list">
+            <label class="item item-input">
+              <input type="text" ng-model="evacuee.driverLic" placeholder="Driver License"/>
+            </label>
+          </div>
+        </tab>
+        <tab heading="SSN">
+          <div class="list">
+            <label class="item item-input">
+              <input type="text" ng-model="evacuee.ssn" placeholder="SSN #"/>
+            </label>
+          </div>
+        </tab>
+      </tabset>
+      <div class="list">
+        <div class="item item-divider">Evacuee Info</div>
+        <label class="item item-input">
+          <input type="text" ng-model="evacuee.firstName" placeholder="First Name"/>
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="evacuee.middleName" placeholder="Middle Name"/>
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="evacuee.lastName" placeholder="Last Name"/>
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="evacuee.dob" placeholder="Date of Birth" pick-a-date="date" pick-a-date-options="dateOptions"/>
+        </label>
+        <div class="item item-divider">Gender</div>
+        <ion-radio value="Male" ng-model="evacuee.gender" name="gender" class="col col-50 inline-radio"> <i class="ion-male">&nbsp;Male</i></ion-radio>
+        <ion-radio value="Female" ng-model="evacuee.gender" name="gender" class="col col-50 inline-radio"><i class="ion-female">&nbsp;Female</i></ion-radio>
       </div>
-      <div ng-switch-when="step2">
-        <autocomplete ng-model="evacuee.nationality" data="nationalities" on-type="getNationality" attr-placeholder="Select a Nationality" class="list-group-item"></autocomplete>
+    </div>
+    <div ng-switch-when="step2">
+      <div class="list">
+        <div class="item item-divider">Nationality</div>
+        <autocomplete ng-model="evacuee.nationality" data="nationalities" attr-placeholder="Select a Nationality" ng-init="evacuee.nationality=&quot;American&quot;" class="list-group-item"></autocomplete>
+        <div class="item item-divider">Major Category</div>
+        <ion-radio value="US Citizen" ng-model="evacuee.majorCategory" ng-init="evacuee.majorCategory=&quot;US Citizen&quot;" name="majorCategory" class="col col-50 inline-radio">US Citizen</ion-radio>
+        <ion-radio value="Alien" ng-model="evacuee.majorCategory" name="majorCategory" class="col col-50 inline-radio">Alien</ion-radio>
+        <ion-radio value="Other" ng-model="evacuee.majorCategory" name="majorCategory" class="col col-50 inline-radio">Other</ion-radio>
+        <div class="item item-divider">Minor Category</div>
+        <ion-radio value="Pregnant Woman" ng-model="evacuee.minorCategory" name="minorCategory" class="col col-50 inline-radio">Pregnant</ion-radio>
+        <ion-radio value="Under 18" ng-model="evacuee.minorCategory" name="minorCategory" class="col col-50 inline-radio">Under 18</ion-radio>
       </div>
-    </ng-switch>
-    <div class="clearfix"></div>
-    <ul class="padding">
-      <li class="pull-left"><a ng-click="decrementStep()" ng-class="{disabled: !hasPreviousStep()}" class="button icon-left ion-chevron-left button-stable">Previous</a></li>
-      <li class="pull-right"><a ng-click="incrementStep()" ng-class="{disabled: !hasNextStep()}" class="button icon-right ion-chevron-right button-stable">Next</a></li>
-    </ul>
-  </form>
-</ion-content>
+    </div>
+    <div ng-switch-when="step3">
+      <div class="list">
+        <div class="item item-divider">Military Satus</div>
+        <ion-radio value="No DoD" ng-model="evacuee.militaryAfflicated" ng-init="evacuee.militaryAfflicated=&quot;No DoD&quot;" name="militaryAfflicated" class="col col-50 inline-radio">No DoD</ion-radio>
+        <ion-radio value="Army" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">Army</ion-radio>
+        <ion-radio value="Navy" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">Navy</ion-radio>
+        <ion-radio value="Air Force" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">Air Force</ion-radio>
+        <ion-radio value="DoD Civilian" ng-model="evacuee.militaryAfflicated" name="militaryAfflicated" class="col col-50 inline-radio">DoD Civilian</ion-radio>
+      </div>
+    </div>
+    <div ng-switch-when="step4">
+      <div class="list">
+        <div class="item item-divider">Blood Type</div>
+        <ion-radio value="A" ng-model="evacuee.bloodType" name="bloodType" class="col col-50 inline-radio">A</ion-radio>
+        <ion-radio value="B" ng-model="evacuee.bloodType" name="bloodType" class="col col-50 inline-radio">B</ion-radio>
+        <ion-radio value="AB" ng-model="evacuee.bloodType" name="bloodType" class="col col-50 inline-radio">AB</ion-radio>
+        <ion-radio value="O" ng-model="evacuee.bloodType" name="bloodType" class="col col-50 inline-radio">O</ion-radio>
+        <div class="item item-divider">Others</div>
+        <label class="item item-input">
+          <input type="number" ng-model="evacuee.weight" min="1" placeholder="Your Weight"/><span class="input-label">lb </span>
+        </label>
+        <label class="item item-input">
+          <textarea placeholder="Special Neeeds" ng-model="evacuee.specialNeeds"></textarea>
+        </label>
+      </div>
+    </div>
+    <div ng-switch-when="step5">
+      <div class="list">
+        <div class="item item-divider">Bracelet</div>
+        <div class="button center"></div>
+      </div>
+    </div>
+  </ng-switch>
+  <div class="clearfix"></div>
+  <ul class="padding">
+    <li class="pull-left"><a ng-click="decrementStep()" ng-class="{disabled: !hasPreviousStep()}" class="button icon-left ion-chevron-left button-stable">Previous</a></li>
+    <li class="pull-right"><a ng-click="incrementStep()" ng-class="{disabled: !hasNextStep()}" ng-hide="!hasNextStep()" class="button icon-right ion-chevron-right button-stable">Next</a><a ng-hide="hasNextStep()" type="submit" class="button icon-right ion-checkmark-round button-balanced">Finish</a></li>
+  </ul>
+</form>
 <ion-footer-bar class="bar-positive"></ion-footer-bar>
