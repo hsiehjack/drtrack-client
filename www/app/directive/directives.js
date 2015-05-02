@@ -1,19 +1,7 @@
-app.directive('bottomNav', function($ionicSideMenuDelegate) {
-  return {
-    restrict: 'E',
-    templateUrl: 'partials/bottomNav.html',
-    link: function(scope, elem, attr) {
-      scope.toggleRight = function() {
-        $ionicSideMenuDelegate.toggleRight();
-      };
-    }
-  };
-});
-
 app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeScanner) {
   return {
     restrict: 'E',
-    template: '<button ng-click="scan()" class="button button-block button-energized">Scan</button>',
+    template: '<button on-tap="scan()" class="button button-energized">Scan</button>',
     link: function(scope, elem, attr) {
       $ionicPlatform.ready(function() {
         scope.scan = function() {
