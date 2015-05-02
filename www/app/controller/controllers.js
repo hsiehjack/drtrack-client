@@ -229,7 +229,7 @@ app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackService, $roo
   $scope.scanDatas = [];
   $scope.manualCheckin = function() {
     if ($rootScope.evacuee.code) {
-      $scope.scanDatas.push({'text': $scope.evacuee.code, 'format': 'Manual Add'});
+      $scope.scanDatas.push({'text': $rootScope.evacuee.code, 'format': 'Manual Add'});
       angular.copy($scope.initial, $scope.evacuee);
     }
   };

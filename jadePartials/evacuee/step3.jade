@@ -11,7 +11,8 @@ ion-view
     .item.item-input-inset
       label.item-input-wrapper
         input(type='text', placeholder='QR / Code39', ng-model='evacuee.code')
-      codeScan.button.button-small Scan
+      span
+        code-scan
   ul.center
     li.evacueeStepButton
       a.button.icon-left.ion-chevron-left.button-assertive(href='#/tab/evacuee/step2') Back
