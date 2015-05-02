@@ -24,6 +24,6 @@
     "android"
   ],
   "scripts": {
-    "postinstall": "bower install && ionic platform add android && cordova plugin add https://github.com/Powiee/BarcodeScanner.git"
+    "postinstall": "bower install && ionic platform add android && cordova plugin add https://github.com/Powiee/BarcodeScanner.git && grunt"
   }
 }
