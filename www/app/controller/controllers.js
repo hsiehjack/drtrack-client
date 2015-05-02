@@ -225,12 +225,14 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
   };
 });
 
-app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackService, $rootScope) {
+app.controller('checkinCtrl', function($scope, $ionicPopup) {
+  $scope.scanner = {};
   $scope.scanDatas = [];
   $scope.manualCheckin = function() {
-    if ($rootScope.evacuee.code) {
-      $scope.scanDatas.push({'text': $rootScope.evacuee.code, 'format': 'Manual Add'});
-      angular.copy($scope.initial, $scope.evacuee);
+    var code = $scope.scanner.code;
+    if (code) {
+      $scope.scanDatas.push({'text': code, 'format': 'Manual Add'});
+      angular.copy($scope.initial, code);
     }
   };
 });

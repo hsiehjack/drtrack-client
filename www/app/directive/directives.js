@@ -1,7 +1,10 @@
 app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeScanner, $timeout) {
   return {
     restrict: 'E',
-    template: '<button on-tap="scan()" class="button button-light">Scan</button>',
+    template: function(elem, attrs) {
+      var btnClass = attrs.class || 'button button-light';
+      return '<button on-tap="scan()" class="' + btnClass + '">Scan</button>';
+    },
     link: function(scope, elem, attr) {
       $ionicPlatform.ready(function() {
         scope.scan = function() {

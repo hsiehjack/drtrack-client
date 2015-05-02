@@ -2,12 +2,12 @@ ion-view
   ion-content.center
     .row.clearBootstrap
       .col
-        code-scan
+        code-scan(data-class='button button-block button-calm')
     form
       .item.item-input.inset.row.clearBootstrap
         label.item-input.wrapper.col.col-75
-          input(type='number', ng-model='evacuee.code', placeholder='Bracelet ID' required)
-        a.button.button-energized.col(on-tap='manualCheckin()') Add
+          input(type='number', ng-model='scanner.code', placeholder='Bracelet ID' required)
+        a.button.button-calm.col(on-tap='manualCheckin()') Add
     ion-list
       ion-item(collection-repeat='scanData in scanDatas track by $index')
         .row.clearBootstrap
