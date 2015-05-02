@@ -1,4 +1,4 @@
-app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeScanner) {
+app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeScanner, $timeout) {
   return {
     restrict: 'E',
     template: '<button on-tap="scan()" class="button button-light">Scan</button>',
@@ -10,9 +10,12 @@ app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeS
             if (imageData.cancelled) {
               // Process Data?
               // Cancel is firing twice and this is a super hackish way to cancel one of the back button fire
-              $ionicPopup.alert({
-                title:'Scan Complete'
-              });
+              // $ionicPopup.alert({
+              //   title:'Scan Complete'
+              // });
+              $timeout(function() {
+
+              }, 100);
             } else {
               scope.scanDatas.push({'text': imageData.text, 'format': imageData.format});
             }
