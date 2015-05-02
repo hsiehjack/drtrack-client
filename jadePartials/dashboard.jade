@@ -1,12 +1,14 @@
-ion-header-bar.bar-positive(align-title='center')
-  .title
-    span.fa.fa-binoculars.fa-rotate-90.fa-spin
-    strong
-    | &nbsp;Dr. Track
-ion-content.center
-  ion-list
-    ion-item.item-icon-left(ng-repeat='dashboardOption in dashboardOptions track by $index', href='#/{{dashboardOption.name | lowercase}}') 
-      i(class="{{dashboardOption.icon}}")
-      |{{dashboardOption.name}}
-ion-footer-bar.bar-positive(align-title='center')
-  .title Dashboard
+ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .title
+      span.fa.fa-binoculars.fa-rotate-90.fa-spin
+      strong
+      | &nbsp;Dr. Track
+  ion-content
+    //- ion-content.center
+    ion-list
+      ion-item.item-icon-left(ng-repeat='dashboardOption in dashboardOptions track by $index', href='#/tab/evacuee') 
+        i(class="{{dashboardOption.icon}}")
+        |{{dashboardOption.name}}
+  ion-footer-bar.bar-positive(align-title='center')
+    .title Dashboard
