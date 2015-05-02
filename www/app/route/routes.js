@@ -87,6 +87,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
           controller: 'evacueeCtrl'
         }
       }
+    })
+    .state('tabs.checkin', {
+      url: '/check-in',
+      views: {
+        'checkin-tab@tabs': {
+          templateUrl: 'partials/checkin.html',
+          controller: 'checkinCtrl'
+        }
+      }
     });
   $urlRouterProvider.otherwise('/');
 });

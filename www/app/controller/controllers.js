@@ -225,7 +225,7 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
   };
 });
 
-app.controller('barcodeCtrl', function($scope, $ionicPopup, drtrackService, $rootScope) {
+app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackService, $rootScope) {
   $scope.scanDatas = [];
   $scope.manualCheckin = function() {
     if ($rootScope.evacuee.code) {
