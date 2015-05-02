@@ -47,9 +47,44 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     .state('tabs.evacuee', {
       url: '/evacuee',
       views: {
-        'evacuee-tab': {
-          templateUrl: 'partials/evacuee.html',
-          controller: 'userCtrl'
+        'evacuee-tab@tabs': {
+          templateUrl: 'partials/evacuee.html'
+        }
+      }
+    })
+    .state('tabs.evacuee.step1', {
+      url: '/step1',
+      views: {
+        'evacuee-home@tabs.evacuee': {
+          templateUrl: 'partials/step1.html',
+          controller: 'evacueeCtrl'
+        }
+      }
+    })
+    .state('tabs.evacuee.step2', {
+      url: '/step2',
+      views: {
+        'evacuee-home@tabs.evacuee': {
+          templateUrl: 'partials/step2.html',
+          controller: 'evacueeCtrl'
+        }
+      }
+    })
+    .state('tabs.evacuee.step3', {
+      url: '/step3',
+      views: {
+        'evacuee-home@tabs.evacuee': {
+          templateUrl: 'partials/step3.html',
+          controller: 'evacueeCtrl'
+        }
+      }
+    })
+    .state('tabs.evacuee.step4', {
+      url: '/step4',
+      views: {
+        'evacuee-home@tabs.evacuee': {
+          templateUrl: 'partials/step4.html',
+          controller: 'evacueeCtrl'
         }
       }
     });

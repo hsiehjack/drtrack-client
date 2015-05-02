@@ -5,8 +5,28 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
   $ionicPlatform.registerBackButtonAction(function () {
     navigator.app.backHistory();
   }, 100);
+  $scope.dashboardOptions = [
+    {name: 'Evacuee', icon: 'icon ion-person-add', link: '#/tab/evacuee/step1'},
+    {name: 'Check-In', icon: 'icon ion-qr-scanner', link: '#/tab/check-in'},
+    {name: 'Search', icon: 'icon ion-search', link: '#/tab/search'},
+    {name: 'Report', icon: 'icon ion-clipboard', link: '#/tab/report'},
+    {name: 'Settings', icon: 'icon ion-gear-a'},
+    {name: 'Logout', icon: 'icon ion-log-out'}];
+});
 
-  $scope.nationalities = [
+app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
+  function suggest_nationality(term) {
+    var q = term.toLowerCase().trim();
+    var results = [];
+
+    for(var i = 0; i < nationalities.length && results.length < 10; i++) {
+      var nation = nationalities[i];
+      if (nation.toLowerCase().indexOf(q) === 0)
+        results.push({label: nation, value: nation});
+    }
+    return results;
+  }
+  var nationalities = [
     'Afghan',
     'Albanian',
     'Algerian',
@@ -200,65 +220,15 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
     'Yemenite',
     'Zambian',
     'Zimbabwean'];
-  $scope.dashboardOptions = [
-    {name: 'Evacuee', icon: 'icon ion-person-add'},
-    {name: 'Check-In', icon: 'icon ion-qr-scanner'},
-    {name: 'Search', icon: 'icon ion-search'},
-    {name: 'Report', icon: 'icon ion-clipboard'},
-    {name: 'Settings', icon: 'icon ion-gear-a'},
-    {name: 'Logout', icon: 'icon ion-log-out'}];
-  $scope.steps= [
-    {step: 'step1', title: 'Personal Info'},
-    {step: 'step2', title: 'Nationality'},
-    {step: 'step3', title: 'Military Affiliate'},
-    {step: 'step4', title: 'Optional'},
-    {step: 'step5', title: 'Bracelet'}
-  ];
-
-  $scope.getCurrentStepIndex = function() {
-    return $scope.steps.indexOf($scope.selection);
+  $scope.autocomplete_options = {
+    suggest: suggest_nationality
   };
-  $scope.hasNextStep = function() {
-    var stepIndex = $scope.getCurrentStepIndex();
-    var nextStep = stepIndex + 1;
-    if ($scope.steps[nextStep] !== undefined) {
-      return true;
-    }
-    return false;
-  };
-  $scope.hasPreviousStep = function() {
-    var stepIndex = $scope.getCurrentStepIndex();
-    var previousStep = stepIndex - 1;
-    if ($scope.steps[previousStep] !== undefined) {
-      return true;
-    }
-    return false;
-  };
-  $scope.incrementStep = function() {
-    if ($scope.hasNextStep()) {
-      var stepIndex = $scope.getCurrentStepIndex();
-      var nextStep = stepIndex + 1;
-      $scope.selection = $scope.steps[nextStep];
-    }
-  };
-  $scope.decrementStep = function() {
-    if ($scope.hasPreviousStep()) {
-      var stepIndex = $scope.getCurrentStepIndex();
-      var previousStep = stepIndex - 1;
-      $scope.selection = $scope.steps[previousStep];
-    }
-  };
-
-
-  $scope.evacuee = {};
-  $scope.selection = $scope.steps[0];
 });
 
-app.controller('barcodeCtrl', function($scope, $ionicPopup) {
-  $scope.evacuee = {};
+app.controller('barcodeCtrl', function($scope, $ionicPopup, drtrackService, $rootScope) {
   $scope.scanDatas = [];
   $scope.manualCheckin = function() {
-    if ($scope.evacuee.code) {
+    if ($rootScope.evacuee.code) {
       $scope.scanDatas.push({'text': $scope.evacuee.code, 'format': 'Manual Add'});
       angular.copy($scope.initial, $scope.evacuee);
     }

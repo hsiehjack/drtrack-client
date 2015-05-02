@@ -1,0 +1,19 @@
+ion-view
+  ion-content
+  .list
+    .item.item-divider Blood Type
+    ion-radio.col.col-50.inline-radio(value='A', ng-model='evacuee.bloodType', name='bloodType') A
+    ion-radio.col.col-50.inline-radio(value='B', ng-model='evacuee.bloodType', name='bloodType') B
+    ion-radio.col.col-50.inline-radio(value='AB', ng-model='evacuee.bloodType', name='bloodType') AB
+    ion-radio.col.col-50.inline-radio(value='O', ng-model='evacuee.bloodType', name='bloodType') O
+    .item.item-divider Others
+    label.item.item-input
+      input(type='number', ng-model='evacuee.weight', min=1, placeholder='Your Weight')
+      span.input-label lb 
+    label.item.item-input
+      textarea(placeholder='Special Neeeds', ng-model='evacuee.specialNeeds')
+  ul.center
+    li.evacueeStepButton
+      a.button.icon-left.ion-chevron-left.button-assertive(href='#/tab/evacuee/step3') Back
+    li.evacueeStepButton
+      a.button.icon-right.ion-chevron-right.button-assertive(href='#/tab/evacuee/step4') Next

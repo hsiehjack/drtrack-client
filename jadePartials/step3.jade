@@ -1,0 +1,19 @@
+ion-view
+  ion-content
+  .list
+    .item.item-divider Military Satus
+    ion-radio(value='No DoD Afflicate', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') No DoD Afflicate
+    ion-radio(value='Army', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Army
+    ion-radio(value='Navy', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Navy
+    ion-radio(value='Air Force', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') Air Force
+    ion-radio(value='DoD Civilian', ng-model='evacuee.militaryAfflicated', name='militaryAfflicated') DoD Civilian
+    .item.item-divider Bracelet
+    .item.item-input-inset
+      label.item-input-wrapper
+        input(type='text', placeholder='QR / Code39', ng-model='evacuee.code')
+      codeScan.button.button-small Scan
+  ul.center
+    li.evacueeStepButton
+      a.button.icon-left.ion-chevron-left.button-assertive(href='#/tab/evacuee/step2') Back
+    li.evacueeStepButton
+      a.button.icon-right.ion-chevron-right.button-assertive(href='#/tab/evacuee/step4') Next

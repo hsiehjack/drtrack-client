@@ -4,10 +4,9 @@ ion-view
       span.fa.fa-binoculars.fa-rotate-90.fa-spin
       strong
       | &nbsp;Dr. Track
-  ion-content
-    //- ion-content.center
+  ion-content.center
     ion-list
-      ion-item.item-icon-left(ng-repeat='dashboardOption in dashboardOptions track by $index', href='#/tab/evacuee') 
+      ion-item.item-icon-left(collection-repeat='dashboardOption in dashboardOptions track by $index', href='#/tab/evacuee/step1') 
         i(class="{{dashboardOption.icon}}")
         |{{dashboardOption.name}}
   ion-footer-bar.bar-positive(align-title='center')
