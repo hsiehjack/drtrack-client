@@ -6,7 +6,7 @@ ion-view
       | &nbsp;Dr. Track
   ion-content.center
     ion-list
-      ion-item.item-icon-left(collection-repeat='dashboardOption in dashboardOptions track by $index', href='#/tab/evacuee/step1') 
+      ion-item.item-icon-left(collection-repeat='dashboardOption in dashboardOptions track by $index', href='{{dashboardOption.link}}') 
         i(class="{{dashboardOption.icon}}")
         |{{dashboardOption.name}}
   ion-footer-bar.bar-positive(align-title='center')
