@@ -17,6 +17,41 @@ body, html {
   background-color: #F4F4F4;
 }
 
-.gender {
+.inline-radio {
   display: inline-block;
+}
+
+.autocomplete ul {
+  z-index: 100;
+}
+
+#evacueeID {
+  background-color: #D3D3D3;
+  font-weight: bold;
+}
+
+/* temp fix */
+/*.item-divider {
+  background-color: #D3D3D3;
+  font-weight: bold;
+}
+
+.item {
+  margin: -2.4px;
+}
+
+.col {
+  padding: 0px;
+}
+
+.bar-footer .tabs-positive .tab-nav {
+  top: 0px;
+}
+
+.bar-footer {
+  padding: 0px;
+}*/
+
+.clearBootstrap {
+  margin: 0;
 }

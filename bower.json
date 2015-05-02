@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "ngCordova": "~0.1.15-alpha",
-    "angular-native-picker": "~1.0.4"
+    "angular-native-picker": "~1.0.4",
+    "allmighty-autocomplete": "*"
   }
 }
