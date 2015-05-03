@@ -2,7 +2,6 @@ ion-view
   ion-content
     .list
       .item.item-divider Nationality
-      //autocomplete.list-group-item(ng-model='evacuee.nationality', data='nationalities', attr-placeholder='Select a Nationality')
       div(mass-autocomplete)
         label.item.item-input
           input(mass-autocomplete-item='autocomplete_options', ng-model='evacuee.nationality', type='text', placeholder='Select a Nationality')
@@ -13,8 +12,8 @@ ion-view
       .item.item-divider Minor Category
       ion-checkbox(value='Pregnant Woman', ng-model='evacuee.minorCategory.pregnant') Pregnant
       ion-checkbox(value='Under 18', ng-model='evacuee.minorCategory.under') Under 18
-    ul.center
-      li.evacueeStepButton
-        a.button.icon-left.ion-chevron-left.button-assertive(href='#/tab/evacuee/step1') Back
-      li.evacueeStepButton
-        a.button.icon-right.ion-chevron-right.button-assertive(href='#/tab/evacuee/step3') Next
+    .row.clearBootstrap
+      .col
+        a.button.icon-left.ion-chevron-left.button-assertive.button-block(href='#/tab/evacuee/step1') Back
+      .col
+        a.button.icon-right.ion-chevron-right.button-assertive.button-block(href='#/tab/evacuee/step3') Next

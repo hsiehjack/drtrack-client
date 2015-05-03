@@ -28,6 +28,9 @@ ion-view
         i.ion-male &nbsp;Male
       ion-radio.col.col-50.inline-radio(value='Female', ng-model='evacuee.gender', name='gender')
         i.ion-female &nbsp;Female
-    ul
-      li.center
-        a.button.icon-right.ion-chevron-right.button-assertive(href='#/tab/evacuee/step2', on-tap='getEvacuee()') Next
+    //- ul
+    //-   li.center
+    //-     a.button.icon-right.ion-chevron-right.button-assertive(href='#/tab/evacuee/step2', on-tap='getEvacuee()') Next
+    .row.clearBootstrap
+      .col
+        a.button.icon-right.ion-chevron-right.button-assertive.button-block(href='#/tab/evacuee/step2', on-tap='getEvacuee()') Next
