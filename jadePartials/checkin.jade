@@ -1,8 +1,17 @@
 ion-view
   ion-content.center
-    .row.clearBootstrap
-      .col
-        code-scan(data-class='button button-block button-calm')
+    //- .row.clearBootstrap
+      //- .col
+        //- a.button.button-block.clearMargin {{transport}}
+    .item
+      select.form-control
+        option(ng-repeat='transport in transports track by $index') {{transport.name}}
+      //- a.button.button-block.clearMargin {{transport}}
+    //- .row.clearBootstrap
+    //-   .col
+    //-     code-scan(data-class='button button-block button-calm clearMargin')
+    .item
+      code-scan(data-class='button button-block button-calm clearMargin')
     form
       .item.item-input.inset.row.clearBootstrap
         label.item-input.wrapper.col.col-75
