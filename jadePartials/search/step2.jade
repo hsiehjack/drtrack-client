@@ -3,6 +3,6 @@ ion-view
     ion-nav-back-button
   ion-content
     ion-list
-      ion-item(collection-repeat='person in results')
-        | {{person.name}}
+      ion-item(collection-repeat='person in results track by $index' href='#/tab/evacuee/step1' on-tap='setEvacuee($index)')
+        | {{person.firstName + ' ' + person.lastName}}
         ion-option-button.ion-edit(on-tap='edit()') &nbsp;Edit

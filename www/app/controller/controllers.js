@@ -251,12 +251,15 @@ app.controller('checkinCtrl', function($scope, $ionicPopup) {
   };
 });
 
-app.controller('searchCtrl', function($scope) {
-  $scope.evacuee = {};
+app.controller('searchCtrl', function($scope, $rootScope, drtrackService) {
   $scope.results = [
-    {name: 'Fake Name'},
-    {name: 'Fake Name 2'}
+    {firstName: 'Jack', lastName: 'Doe', gender: 'Male'},
+    {firstName: 'Mike', lastName: 'Doe', gender: 'Male'},
+    {firstName: 'Will', lastName: 'Doe', gender: 'Male'}
   ];
+  $scope.setEvacuee = function(index) {
+    $rootScope.evacuee = $scope.results[index];
+  }
   $scope.scanDatas = [];
   $scope.edit = function() {
     // Go to Evacuee Pages
