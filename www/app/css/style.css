@@ -52,6 +52,6 @@ body, html {
   padding: 0px;
 }*/
 
-.clearBootstrap {
+.clearBootstrap, .button.button-block.clearMargin {
   margin: 0;
 }
