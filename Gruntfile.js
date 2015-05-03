@@ -21,6 +21,12 @@ module.exports = function(grunt) {
         cwd: './jadePartials',
         expand: true,
         ext: '.html'
+      }, {
+        src: './search/*.jade',
+        dest: './www/partials',
+        cwd: './jadePartials',
+        expand: true,
+        ext: '.html'
       }]
     }
   }

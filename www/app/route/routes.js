@@ -73,6 +73,32 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
           controller: 'checkinCtrl'
         }
       }
+    })
+    .state('tabs.search', {
+      url: '/search',
+      views: {
+        'search-tab@tabs': {
+          templateUrl: 'partials/search.html',
+        }
+      }
+    })
+    .state('tabs.search.step1', {
+      url: '/step1',
+      views: {
+        'search-home@tabs.search': {
+          templateUrl: 'partials/search/step1.html',
+          controller: 'searchCtrl'
+        }
+      }
+    })
+    .state('tabs.search.step2', {
+      url: '/step2',
+      views: {
+        'search-home@tabs.search': {
+          templateUrl: 'partials/search/step2.html',
+          controller: 'searchCtrl'
+        }
+      }
     });
   $urlRouterProvider.otherwise('/');
 });

@@ -1,0 +1,28 @@
+ion-view
+  ion-content
+    tabset#evacueeID
+      tab(heading='PP')
+        .list
+          label.item.item-input
+            input(type='text', ng-model='evacuee.passport', placeholder='Passport ID')
+      tab(heading='DL')
+        .list
+          label.item.item-input
+            input(type='text', ng-model='evacuee.driverLic', placeholder='Driver License')
+      tab(heading='SSN')
+        .list
+          label.item.item-input
+            input(type='text', ng-model='evacuee.ssn', placeholder='SSN #')
+    .list
+      .item.item-divider Evacuee Info
+      label.item.item-input
+        input(type='text', ng-model='evacuee.firstName', placeholder='First Name')
+      label.item.item-input
+        input(type='text', ng-model='evacuee.lastName', placeholder='Last Name')
+      label.item.item-input
+        input(type='text', ng-model='evacuee.dob', placeholder='Date of Birth', pick-a-date='date', pick-a-date-options='dateOptions')
+    .row.clearBootstrap
+      .col
+        code-scan(data-class='button button-block button-calm')
+      .col
+        a.button.button-block.button-assertive(href='#/tab/search/step2', on-tap='getResult()') Search

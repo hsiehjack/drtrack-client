@@ -8,7 +8,7 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
   $scope.dashboardOptions = [
     {name: 'Evacuee', icon: 'icon ion-person-add', link: '#/tab/evacuee/step1'},
     {name: 'Check-In', icon: 'icon ion-qr-scanner', link: '#/tab/check-in'},
-    {name: 'Search', icon: 'icon ion-search', link: '#/tab/search'},
+    {name: 'Search', icon: 'icon ion-search', link: '#/tab/search/step1'},
     {name: 'Report', icon: 'icon ion-clipboard', link: '#/tab/report'},
     {name: 'Settings', icon: 'icon ion-gear-a'},
     {name: 'Logout', icon: 'icon ion-log-out'}];
@@ -234,5 +234,18 @@ app.controller('checkinCtrl', function($scope, $ionicPopup) {
       $scope.scanDatas.push({'text': code, 'format': 'Manual Add'});
       angular.copy($scope.initial, code);
     }
+  };
+});
+
+app.controller('searchCtrl', function($scope) {
+  $scope.evacuee = {};
+  $scope.results = [
+    {name: 'Fake Name'},
+    {name: 'Fake Name 2'}
+  ];
+  $scope.scanDatas = [];
+  $scope.edit = function() {
+    // Go to Evacuee Pages
+    alert('Edit');
   };
 });
