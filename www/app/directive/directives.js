@@ -13,14 +13,12 @@ app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeS
             if (imageData.cancelled) {
               // Process Data?
               // Cancel is firing twice and this is a super hackish way to cancel one of the back button fire
-              // $ionicPopup.alert({
-              //   title:'Scan Complete'
-              // });
-              $timeout(function() {
-
-              }, 100);
+              $ionicPopup.alert({
+                title:'Scan Complete'
+              });
             } else {
               scope.scanDatas.push({'text': imageData.text, 'format': imageData.format});
+              scope.scan();
             }
           }, function(error) {
             alert("Camera Not Working");

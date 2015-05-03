@@ -11,8 +11,7 @@ ion-view
       .item.item-input-inset
         label.item-input-wrapper
           input(type='text', placeholder='QR / Code39', ng-model='evacuee.code')
-        span
-          code-scan
+        code-scan(data-class='button button-calm')
     .row.clearBootstrap
       .col
         a.button.icon-left.ion-chevron-left.button-assertive.button-block(href='#/tab/evacuee/step2') Back
