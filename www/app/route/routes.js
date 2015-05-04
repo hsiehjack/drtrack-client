@@ -21,45 +21,37 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'partials/tabs.html',
       abstract: true
     })
-    .state('tabs.evacuee', {
-      url: '/evacuee',
+    .state('tabs.evacuee-step1', {
+      url: '/evacuee/step1',
       views: {
         'evacuee-tab@tabs': {
-          templateUrl: 'partials/evacuee.html'
-        }
-      }
-    })
-    .state('tabs.evacuee.step1', {
-      url: '/step1',
-      views: {
-        'evacuee-home@tabs.evacuee': {
           templateUrl: 'partials/evacuee/step1.html',
           controller: 'evacueeCtrl'
         }
       }
     })
-    .state('tabs.evacuee.step2', {
-      url: '/step2',
+    .state('tabs.evacuee-step2', {
+      url: '/evacuee/step2',
       views: {
-        'evacuee-home@tabs.evacuee': {
+        'evacuee-tab@tabs': {
           templateUrl: 'partials/evacuee/step2.html',
           controller: 'evacueeCtrl'
         }
       }
     })
-    .state('tabs.evacuee.step3', {
-      url: '/step3',
+    .state('tabs.evacuee-step3', {
+      url: '/evacuee/step3',
       views: {
-        'evacuee-home@tabs.evacuee': {
+        'evacuee-tab@tabs': {
           templateUrl: 'partials/evacuee/step3.html',
           controller: 'evacueeCtrl'
         }
       }
     })
-    .state('tabs.evacuee.step4', {
-      url: '/step4',
+    .state('tabs.evacuee-step4', {
+      url: '/evacuee/step4',
       views: {
-        'evacuee-home@tabs.evacuee': {
+        'evacuee-tab@tabs': {
           templateUrl: 'partials/evacuee/step4.html',
           controller: 'evacueeCtrl'
         }
@@ -74,27 +66,19 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         }
       }
     })
-    .state('tabs.search', {
-      url: '/search',
+    .state('tabs.search-step1', {
+      url: '/search/step1',
       views: {
         'search-tab@tabs': {
-          templateUrl: 'partials/search.html',
-        }
-      }
-    })
-    .state('tabs.search.step1', {
-      url: '/step1',
-      views: {
-        'search-home@tabs.search': {
           templateUrl: 'partials/search/step1.html',
           controller: 'searchCtrl'
         }
       }
     })
-    .state('tabs.search.step2', {
-      url: '/step2',
+    .state('tabs.search-step2', {
+      url: '/search/step2',
       views: {
-        'search-home@tabs.search': {
+        'search-tab@tabs': {
           templateUrl: 'partials/search/step2.html',
           controller: 'searchCtrl'
         }
