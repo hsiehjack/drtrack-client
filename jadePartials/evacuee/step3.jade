@@ -1,4 +1,10 @@
 ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .buttons
+      a.button(href='#/tab/evacuee/step2') Back
+    .title Evacuee
+    .buttons
+      a.button(href='#/tab/evacuee/step4') Next
   ion-content
     .list
       .item.item-divider Military Satus
@@ -12,8 +18,3 @@ ion-view
         label.item-input-wrapper
           input(type='text', placeholder='QR / Code39', ng-model='evacuee.code')
         code-scan(data-class='button button-calm')
-    .row.clearBootstrap
-      .col
-        a.button.icon-left.ion-chevron-left.button-assertive.button-block(href='#/tab/evacuee/step2') Back
-      .col
-        a.button.icon-right.ion-chevron-right.button-assertive.button-block(href='#/tab/evacuee/step4') Next

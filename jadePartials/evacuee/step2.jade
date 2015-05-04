@@ -1,4 +1,10 @@
 ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .buttons
+      a.button(href='#/tab/evacuee/step1') Back
+    .title Evacuee
+    .buttons
+      a.button(href='#/tab/evacuee/step3') Next
   ion-content
     .list
       .item.item-divider Nationality
@@ -12,8 +18,3 @@ ion-view
       .item.item-divider Minor Category
       ion-checkbox(value='Pregnant Woman', ng-model='evacuee.minorCategory.pregnant') Pregnant
       ion-checkbox(value='Under 18', ng-model='evacuee.minorCategory.under') Under 18
-    .row.clearBootstrap
-      .col
-        a.button.icon-left.ion-chevron-left.button-assertive.button-block(href='#/tab/evacuee/step1') Back
-      .col
-        a.button.icon-right.ion-chevron-right.button-assertive.button-block(href='#/tab/evacuee/step3') Next

@@ -1,4 +1,8 @@
 ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .buttons
+      a.button(href='#/tab/evacuee/step3') Back
+    .title Evacuee
   ion-content
     .list
       .item.item-divider Blood Type
@@ -14,6 +18,4 @@ ion-view
         textarea(placeholder='Special Neeeds', ng-model='evacuee.specialNeeds')
     .row.clearBootstrap
       .col
-        a.button.icon-left.ion-chevron-left.button-assertive.button-block(href='#/tab/evacuee/step1') Back
-      .col
-        a.button.icon-right.ion-chevron-right.button-assertive.button-block(href='#/tab/evacuee/step3') Done
+        a.button.icon-right.ion-chevron-right.button-assertive.button-block(on-tap='submitEvacuee()') Submit

@@ -1,6 +1,8 @@
 ion-view
-  ion-nav-bar
-    ion-nav-back-button
+  ion-header-bar.bar-positive(align-title='center')
+    .buttons
+      a.button.ion-chevron-left(href='#/tab/search/step1') &nbsp;Back
+    .title Evacuee
   ion-content
     ion-list
       ion-item(collection-repeat='person in results track by $index' href='#/tab/evacuee/step1' on-tap='setEvacuee($index)')
