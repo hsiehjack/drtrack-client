@@ -6,6 +6,7 @@ app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeS
       return '<button on-tap="scan()" class="' + btnClass + '">Scan</button>';
     },
     link: function(scope, elem, attr) {
+      var bulk = attr.bulk || false;
       $ionicPlatform.ready(function() {
         scope.scan = function() {
           // scope.scanDatas.push({'text': 'fakeText', 'format': 'fakeFormat'});
@@ -17,8 +18,8 @@ app.directive('codeScan', function($ionicPopup, $ionicPlatform, $cordovaBarcodeS
                 title:'Scan Complete'
               });
             } else {
-              scope.scanDatas.push({'text': imageData.text, 'format': imageData.format});
-              scope.scan();
+              scope.scanDatas.unshift({'text': imageData.text, 'format': imageData.format});
+              if (bulk) scope.scan();
             }
           }, function(error) {
             alert("Camera Not Working");

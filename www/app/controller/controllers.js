@@ -223,6 +223,10 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
   $scope.autocomplete_options = {
     suggest: suggest_nationality
   };
+  $scope.scanDatas = [];
+  $scope.$watch('scanDatas', function() {
+    $rootScope.evacuee.code = $scope.scanDatas[0].text || null;
+  }, true);
 });
 
 app.controller('checkinCtrl', function($scope, $ionicPopup) {
@@ -245,8 +249,8 @@ app.controller('checkinCtrl', function($scope, $ionicPopup) {
   $scope.manualCheckin = function() {
     var code = $scope.scanner.code;
     if (code) {
-      $scope.scanDatas.push({'text': code, 'format': 'Manual Add'});
-      angular.copy($scope.initial, code);
+      $scope.scanDatas.unshift({'text': code, 'format': 'Manual Add'});
+      $scope.scanner.code = null;
     }
   };
 });
