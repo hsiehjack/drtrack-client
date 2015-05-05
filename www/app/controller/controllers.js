@@ -235,7 +235,9 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
   };
   $scope.scanDatas = [];
   $scope.$watch('scanDatas', function() {
-    $rootScope.evacuee.code = $scope.scanDatas[0].text || null;
+    if ($scope.scanDatas.length > 0) {
+      $rootScope.evacuee.code = $scope.scanDatas[0].text || null;
+    }
   }, true);
   $scope.clearEvacuee = function() {
     $rootScope.evacuee = [];

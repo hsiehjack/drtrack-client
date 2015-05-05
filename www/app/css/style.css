@@ -55,3 +55,7 @@ body, html {
 .clearBootstrap, .button.button-block.clearMargin {
   margin: 0;
 }
+
+.home .list {
+  background-color: inherit;
+}
