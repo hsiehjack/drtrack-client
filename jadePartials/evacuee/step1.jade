@@ -4,33 +4,34 @@ ion-view
       a.button(on-tap='clearEvacuee()') Clear
     .title Evacuee
     .buttons
-      a.button(href='#/tab/evacuee/step2') Next
+      a.button(on-tap='validateFormStep1()') Next
   ion-content
-    tabset#evacueeID
-      tab(heading='PP')
-        .list
-          label.item.item-input
-            input(type='text', ng-model='evacuee.passport', placeholder='Passport ID', ng-blur='validate()')
-      tab(heading='DL')
-        .list
-          label.item.item-input
-            input(type='text', ng-model='evacuee.driverLic', placeholder='Driver License')
-      tab(heading='SSN')
-        .list
-          label.item.item-input
-            input(type='text', ng-model='evacuee.ssn', placeholder='SSN #')
-    .list
-      .item.item-divider Evacuee Info
-      label.item.item-input
-        input(type='text', ng-model='evacuee.firstName', placeholder='First Name')
-      label.item.item-input
-        input(type='text', ng-model='evacuee.middleName', placeholder='Middle Name')
-      label.item.item-input
-        input(type='text', ng-model='evacuee.lastName', placeholder='Last Name')
-      label.item.item-input
-        input(type='text', ng-model='evacuee.dob', placeholder='Date of Birth', pick-a-date='date', pick-a-date-options='dateOptions')
-      .item.item-divider Gender
-      ion-radio.col.col-50.inline-radio(value='Male', ng-model='evacuee.gender', name='gender') 
-        i.ion-male &nbsp;Male
-      ion-radio.col.col-50.inline-radio(value='Female', ng-model='evacuee.gender', name='gender')
-        i.ion-female &nbsp;Female
+    form.clearBootstrap(name='formStep1', novalidate)
+      tabset#evacueeID
+        tab(heading='PP')
+          .list
+            label.item.item-input
+              input(type='text', ng-model='evacuee.passport', placeholder='Passport ID', ng-blur='validateEvacuee()')
+        tab(heading='DL')
+          .list
+            label.item.item-input
+              input(type='text', ng-model='evacuee.driverLic', placeholder='Driver License', ng-blur='validateEvacuee()')
+        tab(heading='SSN')
+          .list
+            label.item.item-input
+              input(type='text', ng-model='evacuee.ssn', placeholder='SSN #', ng-blur='validateEvacuee()')
+      .list
+        .item.item-divider Evacuee Info
+        label.item.item-input
+          input(type='text', ng-model='evacuee.firstName', placeholder='First Name', required)
+        label.item.item-input
+          input(type='text', ng-model='evacuee.middleName', placeholder='Middle Name', required)
+        label.item.item-input
+          input(type='text', ng-model='evacuee.lastName', placeholder='Last Name', required)
+        label.item.item-input
+          input(type='text', ng-model='evacuee.dob', placeholder='Date of Birth', pick-a-date='date', pick-a-date-options='dateOptions', required)
+        .item.item-divider Gender
+        ion-radio.col.col-50.inline-radio(value='Male', ng-model='evacuee.gender', name='gender', required) 
+          i.ion-male &nbsp;Male
+        ion-radio.col.col-50.inline-radio(value='Female', ng-model='evacuee.gender', name='gender', required)
+          i.ion-female &nbsp;Female
