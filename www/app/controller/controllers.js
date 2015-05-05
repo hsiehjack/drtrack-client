@@ -1,4 +1,13 @@
-app.controller('loginCtrl', function($scope) {
+app.controller('loginCtrl', function($scope, drtrackFactory, $location, $http) {
+  $scope.login = function(username, password) {
+    drtrackFactory.login(username, password)
+    .then(function(data) {
+      $scope.loginError = false;
+      $location.path('/dashboard');
+    }, function(err) {
+      $scope.loginError = true;
+    });
+  };
 });
 
 app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
@@ -11,7 +20,8 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
     {name: 'Search', icon: 'icon ion-search', link: '#/tab/search/step1'},
     {name: 'Report', icon: 'icon ion-clipboard', link: '#/tab/report'},
     {name: 'Settings', icon: 'icon ion-gear-a'},
-    {name: 'Logout', icon: 'icon ion-log-out'}];
+    {name: 'Logout', icon: 'icon ion-log-out', link: '#/'}];
+
 });
 
 app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
@@ -227,6 +237,9 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
   $scope.$watch('scanDatas', function() {
     $rootScope.evacuee.code = $scope.scanDatas[0].text || null;
   }, true);
+  $scope.clearEvacuee = function() {
+    $rootScope.evacuee = [];
+  };
 });
 
 app.controller('checkinCtrl', function($scope, $ionicPopup) {

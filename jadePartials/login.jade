@@ -4,8 +4,9 @@ ion-view
       div.center.logo
         span.fa.fa-binoculars.fa-rotate-90.fa-5x.fa-spin
       .list.list-inset
+        alert(type='danger', ng-show='loginError') Invalid Username / Password
         label.item.item-input
-          input(type='text', placeholder='Username')
+          input(type='text', placeholder='Username', ng-model='user.username', required)
         label.item.item-input
-          input(type='password', placeholder='Password')
-        a.button.button-block.button-positive(href='#/dashboard') Login
+          input(type='password', placeholder='Password', ng-model='user.password', required)
+        a.button.button-block.button-positive(on-tap='login(user.username, user.password)') Login

@@ -1,7 +1,7 @@
 ion-view
   ion-header-bar.bar-positive(align-title='center')
     .buttons
-      a.button(on-tap='clearEvacuee') Clear
+      a.button(on-tap='clearEvacuee()') Clear
     .title Evacuee
     .buttons
       a.button(href='#/tab/evacuee/step2') Next
@@ -10,7 +10,7 @@ ion-view
       tab(heading='PP')
         .list
           label.item.item-input
-            input(type='text', ng-model='evacuee.passport', placeholder='Passport ID')
+            input(type='text', ng-model='evacuee.passport', placeholder='Passport ID', ng-blur='validate()')
       tab(heading='DL')
         .list
           label.item.item-input

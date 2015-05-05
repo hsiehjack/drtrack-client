@@ -9,7 +9,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $stateProvider
     .state('login', {
       url: '/',
-      templateUrl: 'partials/login.html'
+      templateUrl: 'partials/login.html',
+      controller: 'loginCtrl'
     })
     .state('dashboard', {
       url: '/dashboard',
