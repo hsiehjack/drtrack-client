@@ -1,12 +1,16 @@
 app.controller('loginCtrl', function($scope, drtrackFactory, $location, $http) {
   $scope.login = function(username, password) {
-    drtrackFactory.login(username, password)
-    .then(function(data) {
-      $scope.loginError = false;
-      $location.path('/dashboard');
-    }, function(err) {
+    if (username === undefined || password === undefined) {
       $scope.loginError = true;
-    });
+    } else {
+      drtrackFactory.login(username, password)
+      .then(function(data) {
+        $scope.loginError = false;
+        $location.path('/dashboard');
+      }, function(err) {
+        $scope.loginError = true;
+      });
+    }
   };
 });
 
@@ -24,7 +28,7 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
 
 });
 
-app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
+app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtrackFactory, $ionicPopup) {
   function suggest_nationality(term) {
     var q = term.toLowerCase().trim();
     var results = [];
@@ -241,6 +245,23 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService) {
   }, true);
   $scope.clearEvacuee = function() {
     $rootScope.evacuee = [];
+  };
+  $scope.validateEvacuee = function() {
+    var data = {
+      passport: $rootScope.evacuee.passport || '',
+      driverLic: $rootScope.evacuee.driverLic || '',
+      ssn: $rootScope.evacuee.ssn || ''
+    };
+    if (data) {
+      drtrackFactory.validateEvacuee(data)
+        .then(function(data) {
+          $ionicPopup.alert({
+            title: 'Evacuee Existed',
+            template: 'Imported'
+          });
+          $rootScope.evacuee = data[0];
+        });
+    }
   };
 });
 
