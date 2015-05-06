@@ -319,6 +319,7 @@ app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackFactory, $tim
 app.controller('searchCtrl', function($scope, $rootScope, drtrackService, $ionicPopup, drtrackFactory, $location) {
   $scope.search = {};
   $scope.setEvacuee = function(result) {
+    result.dob = new Date(result.dob);
     $rootScope.evacuee = result;
   };
   $scope.scanDatas = [];

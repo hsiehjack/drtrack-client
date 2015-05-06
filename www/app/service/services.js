@@ -12,7 +12,7 @@ app.service('drtrackService', function($rootScope) {
   };
 });
 
-app.factory('drtrackFactory', function($http, $q) {
+app.factory('drtrackFactory', function($http, $q, $filter) {
   var apiServer = 'http://52.4.190.187';
   var login = function(username, password) {
     var deferred = $q.defer();
@@ -49,6 +49,7 @@ app.factory('drtrackFactory', function($http, $q) {
   };
   var submitEvacuee = function(data) {
     var deferred = $q.defer();
+    data.dob = $filter('date')(data.dob, 'M/d/y');
     $http.post(apiServer + '/api/evacuee', data)
       .success(function(data) {
         deferred.resolve(data);
