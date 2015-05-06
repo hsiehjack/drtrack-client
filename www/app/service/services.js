@@ -29,8 +29,21 @@ app.factory('drtrackFactory', function($http, $q) {
       });
     return deferred.promise;
   };
+  var getManifest = function() {
+    var deferred = $q.defer();
+
+    $http.get(apiServer + '/api/manifest')
+      .success(function(data) {
+        deferred.resolve(data);
+      })
+      .error(function(err, data) {
+        deferred.reject();
+      });
+    return deferred.promise;
+  };
   return {
     login: login,
-    validateEvacuee: validateEvacuee
+    validateEvacuee: validateEvacuee,
+    getManifest: getManifest
   };
 });
