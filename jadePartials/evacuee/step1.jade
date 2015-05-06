@@ -4,7 +4,7 @@ ion-view
       a.button(on-tap='clearEvacuee()') Clear
     .title Evacuee
     .buttons
-      a.button(on-tap='validateFormStep1()') Next
+      a.button(href='#/tab/evacuee/step2') Next
   ion-content
     form.clearBootstrap(name='formStep1', novalidate)
       tabset#evacueeID
@@ -29,7 +29,8 @@ ion-view
         label.item.item-input
           input(type='text', ng-model='evacuee.lastName', placeholder='Last Name', required)
         label.item.item-input
-          input(type='text', ng-model='evacuee.dob', placeholder='Date of Birth', pick-a-date='date', pick-a-date-options='dateOptions', required)
+          span.input-label Date of Birth
+          input(type='date', ng-model='evacuee.dob', required)
         .item.item-divider Gender
         ion-radio.col.col-50.inline-radio(value='Male', ng-model='evacuee.gender', name='gender', required) 
           i.ion-male &nbsp;Male
