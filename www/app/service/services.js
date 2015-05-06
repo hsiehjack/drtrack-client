@@ -1,5 +1,14 @@
 app.service('drtrackService', function($rootScope) {
   $rootScope.evacuee = [];
+  var isOperator = true;
+
+  this.setOperator = function(data) {
+    isOperator = data;
+  };
+
+  this.getOperator = function() {
+    return isOperator;
+  };
 
   this.setEvacuee = function(data) {
     $rootScope.evacuee = data;
@@ -24,7 +33,7 @@ app.factory('drtrackFactory', function($http, $q) {
     $http.post(apiServer + '/api/evacuee/validate', {passport: data.passport || '', driverLic: data.driverLic || '', ssn: data.ssn || ''})
       .success(function(data) {
         deferred.resolve(data);
-      }).error(function(err, data) {
+      }).error(function(err) {
         deferred.reject();
       });
     return deferred.promise;
@@ -41,9 +50,21 @@ app.factory('drtrackFactory', function($http, $q) {
       });
     return deferred.promise;
   };
+  var submitEvacuee = function(data) {
+    var deferred = $q.defer();
+    console.log(data);
+    $http.post(apiServer + '/api/evacuee', data)
+      .success(function(data) {
+        deferred.resolve(data);
+      }).error(function(err) {
+        deferred.reject();
+      });
+    return deferred.promise;
+  };
   return {
     login: login,
     validateEvacuee: validateEvacuee,
-    getManifest: getManifest
+    getManifest: getManifest,
+    submitEvacuee: submitEvacuee
   };
 });
