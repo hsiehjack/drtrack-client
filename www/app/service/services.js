@@ -10,10 +10,6 @@ app.service('drtrackService', function($rootScope) {
   this.getOperator = function() {
     return isOperator;
   };
-
-  this.setEvacuee = function(data) {
-    $rootScope.evacuee = data;
-  };
 });
 
 app.factory('drtrackFactory', function($http, $q) {
@@ -71,11 +67,22 @@ app.factory('drtrackFactory', function($http, $q) {
       });
     return deferred.promise;
   };
+  var deleteEvacuee = function(data) {
+    var deferred = $q.defer();
+    $http.delete(apiServer + '/api/evacuee', data)
+      .success(function(data) {
+        deferred.resolve(data);
+      }).error(function(err) {
+        deferred.reject();
+      });
+    return deferred.promise;
+  };
   return {
     login: login,
     validateEvacuee: validateEvacuee,
     getManifest: getManifest,
     submitEvacuee: submitEvacuee,
-    searchEvacuee: searchEvacuee
+    searchEvacuee: searchEvacuee,
+    deleteEvacuee: deleteEvacuee
   };
 });

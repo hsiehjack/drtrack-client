@@ -7,4 +7,4 @@ ion-view
     ion-list
       ion-item(collection-repeat='result in results track by $index', href='#/tab/evacuee/step1', on-tap='setEvacuee(result)')
         | {{result.firstName}} {{result.lastName}}
-        ion-option-button.button-assertive.ion-ios-trash-outline(on-tap='delete()') &nbsp;Delete
+        ion-option-button.button-assertive.ion-ios-trash-outline(on-tap='delete(result.code)') &nbsp;Delete

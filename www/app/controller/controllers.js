@@ -344,4 +344,15 @@ app.controller('searchCtrl', function($scope, $rootScope, drtrackService, $ionic
       });
     }
   };
+  $scope.delete = function(code) {
+    drtrackFactory.deleteEvacuee(code)
+      .then(function(data) {
+        console.log("success");
+      }, function(data) {
+        $ionicPopup.alert({
+          title: 'Error',
+          template: 'Something went wrong.'
+        });
+      });
+  }
 });
