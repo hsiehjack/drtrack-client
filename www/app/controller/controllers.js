@@ -340,7 +340,7 @@ app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackFactory, $tim
       $scope.scanDatas.forEach(function(value) {
         $scope.selectedManifest.manifest.evacuee.push(value.text)
       });
-      drtrackFactory.updateEvacuee($scope.selectedManifest.manifest)
+      drtrackFactory.updateManifest($scope.selectedManifest.manifest)
         .then(function(data) {
           $scope.selectedManifest.manifest = {};
           $scope.scanDatas = [];
