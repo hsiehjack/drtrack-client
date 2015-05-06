@@ -1,0 +1,12 @@
+ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .buttons
+      a.button.ion-chevron-left(href='#/report/step1') &nbsp;Back
+    .title Manifest
+  ion-content
+    ion-list
+      ion-item.item-icon-right(collection-repeat='code in manifests.evacuee track by $index', on-tap='setEvacueeCode(code)')
+        | {{code}}
+        i(class='icon ion-ios-arrow-right')
+  ion-footer-bar.bar-positive(align-title='center')
+    a.ion-home.title(href='#/dashboard') &nbsp;Dashboard

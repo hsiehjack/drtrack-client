@@ -2,6 +2,8 @@ app.service('drtrackService', function($rootScope) {
   $rootScope.evacuee = {};
   $rootScope.results = {};
   $rootScope.updatedEvacuee = false;
+  $rootScope.manifests = {};
+  $rootScope.evacueeCode = null;
   var isOperator = true;
 
   this.setOperator = function(data) {
@@ -13,7 +15,7 @@ app.service('drtrackService', function($rootScope) {
   };
 });
 
-app.factory('drtrackFactory', function($http, $q, $filter) {
+app.factory('drtrackFactory', function($http, $q, $filter, $rootScope, drtrackService) {
   var apiServer = 'http://52.4.190.187';
   var login = function(username, password) {
     var deferred = $q.defer();
@@ -101,6 +103,16 @@ app.factory('drtrackFactory', function($http, $q, $filter) {
       });
     return deferred.promise;
   };
+  var getEvacueeCode = function(datas) {
+    var deferred = $q.defer();
+    $http.get(apiServer + '/api/evacuee/' + datas)
+      .success(function(data) {
+        deferred.resolve(data);
+      }).error(function(err) {
+        deferred.reject();
+      });
+    return deferred.promise;
+  };
   return {
     login: login,
     validateEvacuee: validateEvacuee,
@@ -109,6 +121,7 @@ app.factory('drtrackFactory', function($http, $q, $filter) {
     searchEvacuee: searchEvacuee,
     deleteEvacuee: deleteEvacuee,
     updateEvacuee: updateEvacuee,
-    updateManifest: updateManifest
+    updateManifest: updateManifest,
+    getEvacueeCode: getEvacueeCode
   };
 });

@@ -17,15 +17,25 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'partials/dashboard.html',
       controller: 'userCtrl'
     })
-    .state('report', {
-      url: '/report',
-      templateUrl: 'partials/report.html',
-      controller: 'reportCtrl'
-    })
     .state('tabs', {
       url: '/tab',
       templateUrl: 'partials/tabs.html',
       abstract: true
+    })
+    .state('report-step1', {
+      url: '/report/step1',
+      templateUrl: 'partials/report/step1.html',
+      controller: 'reportCtrl'
+    })
+    .state('report-step2', {
+      url: '/report/step2',
+      templateUrl: 'partials/report/step2.html',
+      controller: 'reportCtrl'
+    })
+    .state('report-step3', {
+      url: '/report/step3',
+      templateUrl: 'partials/report/step3.html',
+      controller: 'reportCtrl'
     })
     .state('tabs.evacuee-step1', {
       url: '/evacuee/step1',

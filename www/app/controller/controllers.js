@@ -25,7 +25,7 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform, drtrackServ
     {name: 'Evacuee', icon: 'icon ion-person-add', link: '#/tab/evacuee/step1'},
     {name: 'Check-In', icon: 'icon ion-qr-scanner', link: '#/tab/check-in'},
     {name: 'Search', icon: 'icon ion-search', link: '#/tab/search/step1'},
-    {name: 'Report', icon: 'icon ion-clipboard', link: '#/tab/report'},
+    {name: 'Report', icon: 'icon ion-clipboard', link: '#/report/step1'},
     {name: 'Logout', icon: 'icon ion-log-out', link: '#/'}];
   if (!drtrackService.getOperator()) {
     $scope.dashboardOptions.unshift({name: 'Admin Panel', icon: 'icon ion-gear-a', link: '#/tab/admin'});
@@ -397,7 +397,7 @@ app.controller('searchCtrl', function($scope, $rootScope, drtrackService, $ionic
   }
 });
 
-app.controller('reportCtrl', function($scope, drtrackFactory) {
+app.controller('reportCtrl', function($scope, drtrackFactory, $ionicPopup, drtrackService, $rootScope, $location, $timeout) {
   drtrackFactory.getManifest()
     .then(function(data) {
       $scope.savedManifest = data;
@@ -407,4 +407,28 @@ app.controller('reportCtrl', function($scope, drtrackFactory) {
         template: 'No Manifest Found'
       });
     });
+
+    $scope.setManifest = function(manifest) {
+      $rootScope.manifests = manifest;
+    };
+    $scope.setEvacueeCode = function(code) {
+      $rootScope.evacueeCode = code;
+      drtrackFactory.getEvacueeCode($rootScope.evacueeCode)
+        .then(function(data) {
+          console.log(data);
+          $scope.evacueeInfos = [];
+          for(var k in data) {
+            var obj = {};
+            obj[k] = data[k];
+            $scope.evacueeInfos.push(obj);
+          }
+          console.log($scope.evacueeInfos);
+          $location.path('/report/step3')
+        }, function(err) {
+          $ionicPopup.alert({
+            title: 'Evacuee',
+            template: 'No evacuee Found'
+          });
+      });
+    };
 });

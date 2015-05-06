@@ -1,0 +1,10 @@
+ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .title Report
+  ion-content
+    ion-list
+      ion-item.item-icon-right(collection-repeat='manifest in savedManifest track by $index', href='#/report/step2', on-tap='setManifest(manifest)')
+        | {{manifest.name}}
+        i(class='icon ion-ios-arrow-right')
+  ion-footer-bar.bar-positive(align-title='center')
+    a.ion-home.title(href='#/dashboard') &nbsp;Dashboard

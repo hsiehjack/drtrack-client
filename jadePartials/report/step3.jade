@@ -1,0 +1,11 @@
+ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .buttons
+      a.button.ion-chevron-left(href='#/report/step1') &nbsp;Back
+    .title Evacuee Info
+  ion-content
+    ion-list
+      ion-item(ng-repeat='eva in evacueeInfos track by $index')
+        | {{eva}}
+  ion-footer-bar.bar-positive(align-title='center')
+    a.ion-home.title(href='#/dashboard') &nbsp;Dashboard
