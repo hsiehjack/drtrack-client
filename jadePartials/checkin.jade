@@ -1,15 +1,14 @@
 ion-view
+  ion-header-bar.bar-positive(align-title='center')
+    .title Check-In
   ion-content.center
-    //- .row.clearBootstrap
-      //- .col
-        //- a.button.button-block.clearMargin {{transport}}
     .item
-      select.form-control
-        option(ng-repeat='transport in transports track by $index') {{transport.name}}
-      //- a.button.button-block.clearMargin {{transport}}
-    //- .row.clearBootstrap
-    //-   .col
-    //-     code-scan(data-class='button button-block button-calm clearMargin')
+      .input-group
+        select.form-control
+          option(ng-repeat='transport in transports track by $index') {{transport.name}}
+        span.input-group-btn
+          button.btn.btn-default(on-tap='refreshManifest()')
+            span.ion-refresh(class='{{spin}}')
     .item
       code-scan(data-class='button button-block button-calm clearMargin', data-bulk='true')
     form

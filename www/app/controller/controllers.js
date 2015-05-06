@@ -265,21 +265,16 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtra
   };
 });
 
-app.controller('checkinCtrl', function($scope, $ionicPopup) {
-  $scope.transports = [
-    {id: 1, name: "The Bus", type: "Bus", capacity: 30, space: 1},
-    {id: 2, name: "The Train", type: "Train", capacity: 100, space: 50},
-    {id: 3, name: "The Airplane", type: "Airplane", capacity: 200, space: 20},
-    {id: 4, name: "The Ship", type: "Ship", capacity: 1000, space: 0},
-    {id: 5, name: "The Bus 2", type: "Bus", capacity: 30, space: 1},
-    {id: 6, name: "The Train 2", type: "Train", capacity: 100, space: 50},
-    {id: 7, name: "The Airplane 2", type: "Airplane", capacity: 200, space: 20},
-    {id: 8, name: "The Ship 2", type: "Ship", capacity: 1000, space: 0},
-    {id: 9, name: "The Bus 3", type: "Bus", capacity: 30, space: 1},
-    {id: 10, name: "The Train 3", type: "Train", capacity: 100, space: 50},
-    {id: 11, name: "The Airplane 3", type: "Airplane", capacity: 200, space: 20},
-    {id: 12, name: "The Ship 3", type: "Ship", capacity: 1000, space: 0}
-  ];
+app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackFactory, $timeout) {
+  drtrackFactory.getManifest()
+    .then(function(data) {
+      $scope.transports = data;
+    }, function(err) {
+      $ionicPopup.alert({
+        title: 'Manifest',
+        template: 'No Manifest Found'
+      });
+    });
   $scope.scanner = {};
   $scope.scanDatas = [];
   $scope.manualCheckin = function() {
@@ -288,6 +283,20 @@ app.controller('checkinCtrl', function($scope, $ionicPopup) {
       $scope.scanDatas.unshift({'text': code, 'format': 'Manual Add'});
       $scope.scanner.code = null;
     }
+  };
+  $scope.refreshManifest = function() {
+    $scope.spin = 'fa fa-spin';
+    drtrackFactory.getManifest()
+      .then(function(data) {
+        $scope.spin = '';
+        $scope.transports = data;
+      }, function(err) {
+        $scope.spin = '';
+        $ionicPopup.alert({
+          title: 'Manifest',
+          template: 'No Manifest Found'
+        });
+      });
   };
 });
 
