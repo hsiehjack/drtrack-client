@@ -1,11 +1,13 @@
 ion-view
   ion-header-bar.bar-positive(align-title='center')
     .title Check-In
+    .buttons
+      a.button(on-tap='submitManifest()') Submit
   ion-content.center
     .item
       .input-group
-        select.form-control
-          option(ng-repeat='transport in transports track by $index') {{transport.name}}
+        select.form-control(ng-model='selectedManifest.manifest', ng-options='transport.name for transport in transports')
+          option(value='', disabled selected) Select a Manifest
         span.input-group-btn
           button.btn.btn-default(on-tap='refreshManifest()')
             span.ion-refresh(class='{{spin}}')
@@ -21,3 +23,4 @@ ion-view
         .row.clearBootstrap
           .col.col-50 {{scanData.text}}
           .col.col-50 {{scanData.format}}
+        ion-option-button.button-assertive.ion-ios-trash-outline(on-tap='delete(scanData, $index)') &nbsp;Delete

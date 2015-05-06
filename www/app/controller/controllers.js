@@ -248,6 +248,7 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtra
     }
   }, true);
   $scope.clearEvacuee = function() {
+    $rootScope.updatedEvacuee = false;
     $rootScope.evacuee = [];
   };
   $scope.validateEvacuee = function() {
@@ -268,20 +269,36 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtra
     }
   };
   $scope.submitEvacuee = function() {
-    drtrackFactory.submitEvacuee($rootScope.evacuee)
-      .then(function(data) {
-        $rootScope.evacuee = {};
-        $location.path('/dashboard');
-      }, function(data) {
-        $ionicPopup.alert({
-          title: 'Error',
-          template: 'Something went wrong.'
+    if ($rootScope.updatedEvacuee) {
+      drtrackFactory.updateEvacuee($rootScope.evacuee)
+        .then(function(data) {
+          $rootScope.updateEvaucee = false;
+          $rootScope.evacuee = {};
+          $location.path('/dashboard');
+        }, function(data) {
+          $ionicPopup.alert({
+            title: 'Error',
+            template: 'Something went wrong.'
+          });
         });
-      });
+    } else {
+      drtrackFactory.submitEvacuee($rootScope.evacuee)
+        .then(function(data) {
+          $rootScope.updateEvaucee = false;
+          $rootScope.evacuee = {};
+          $location.path('/dashboard');
+        }, function(data) {
+          $ionicPopup.alert({
+            title: 'Error',
+            template: 'Something went wrong.'
+          });
+        });
+    }
   };
 });
 
 app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackFactory, $timeout) {
+  $scope.selectedManifest = {};
   drtrackFactory.getManifest()
     .then(function(data) {
       $scope.transports = data;
@@ -314,11 +331,33 @@ app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackFactory, $tim
         });
       });
   };
+  $scope.delete = function(code, index) {
+    $scope.scanDatas.splice(index, 1);
+  }
+  $scope.submitManifest = function() {
+    if ($scope.scanDatas.length > 0 && $scope.selectedManifest.manifest !== undefined) {
+      //$scope.selectedManifest.manifest.evacuee.push($scope.scanDatas);
+      $scope.scanDatas.forEach(function(value) {
+        $scope.selectedManifest.manifest.evacuee.push(value.text)
+      });
+      drtrackFactory.updateEvacuee($scope.selectedManifest.manifest)
+        .then(function(data) {
+          $scope.selectedManifest.manifest = {};
+          $scope.scanDatas = [];
+        }, function(err) {
+          $ionicPopup.alert({
+            title: 'Manifest',
+            template: 'No Manifest Found'
+          });
+        });
+    }
+  }
 });
 
 app.controller('searchCtrl', function($scope, $rootScope, drtrackService, $ionicPopup, drtrackFactory, $location) {
   $scope.search = {};
   $scope.setEvacuee = function(result) {
+    $rootScope.updatedEvacuee = true;
     result.dob = new Date(result.dob);
     $rootScope.evacuee = result;
   };
@@ -356,4 +395,16 @@ app.controller('searchCtrl', function($scope, $rootScope, drtrackService, $ionic
         });
       });
   }
+});
+
+app.controller('reportCtrl', function($scope, drtrackFactory) {
+  drtrackFactory.getManifest()
+    .then(function(data) {
+      $scope.savedManifest = data;
+    }, function(err) {
+      $ionicPopup.alert({
+        title: 'Manifest',
+        template: 'No Manifest Found'
+      });
+    });
 });

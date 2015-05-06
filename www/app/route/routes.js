@@ -17,6 +17,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'partials/dashboard.html',
       controller: 'userCtrl'
     })
+    .state('report', {
+      url: '/report',
+      templateUrl: 'partials/report.html',
+      controller: 'reportCtrl'
+    })
     .state('tabs', {
       url: '/tab',
       templateUrl: 'partials/tabs.html',

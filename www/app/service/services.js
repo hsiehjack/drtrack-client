@@ -1,6 +1,7 @@
 app.service('drtrackService', function($rootScope) {
   $rootScope.evacuee = {};
   $rootScope.results = {};
+  $rootScope.updatedEvacuee = false;
   var isOperator = true;
 
   this.setOperator = function(data) {
@@ -69,8 +70,30 @@ app.factory('drtrackFactory', function($http, $q, $filter) {
     return deferred.promise;
   };
   var deleteEvacuee = function(data) {
+    console.log(data);
     var deferred = $q.defer();
     $http.delete(apiServer + '/api/evacuee', data)
+      .success(function(data) {
+        deferred.resolve(data);
+      }).error(function(err) {
+        deferred.reject();
+      });
+    return deferred.promise;
+  };
+  var updateEvacuee = function(data) {
+    var deferred = $q.defer();
+    data.dob = $filter('date')(data.dob, 'M/d/y');
+    $http.put(apiServer + '/api/evacuee', data)
+      .success(function(data) {
+        deferred.resolve(data);
+      }).error(function(err) {
+        deferred.reject();
+      });
+    return deferred.promise;
+  };
+  var updateManifest = function(data) {
+    var deferred = $q.defer();
+    $http.put(apiServer + '/api/manifest', data)
       .success(function(data) {
         deferred.resolve(data);
       }).error(function(err) {
@@ -84,6 +107,8 @@ app.factory('drtrackFactory', function($http, $q, $filter) {
     getManifest: getManifest,
     submitEvacuee: submitEvacuee,
     searchEvacuee: searchEvacuee,
-    deleteEvacuee: deleteEvacuee
+    deleteEvacuee: deleteEvacuee,
+    updateEvacuee: updateEvacuee,
+    updateManifest: updateManifest
   };
 });
