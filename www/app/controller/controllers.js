@@ -1,4 +1,4 @@
-app.controller('loginCtrl', function($scope, drtrackFactory, $location, $http) {
+app.controller('loginCtrl', function($scope, drtrackFactory, $location, $http, drtrackService) {
   $scope.login = function(username, password) {
     if (username === undefined || password === undefined) {
       $scope.loginError = true;
@@ -6,6 +6,9 @@ app.controller('loginCtrl', function($scope, drtrackFactory, $location, $http) {
       drtrackFactory.login(username, password)
       .then(function(data) {
         $scope.loginError = false;
+        if (data.role.toLowerCase() !== 'operator') {
+          drtrackService.setOperator(false);
+        }
         $location.path('/dashboard');
       }, function(err) {
         $scope.loginError = true;
@@ -14,7 +17,7 @@ app.controller('loginCtrl', function($scope, drtrackFactory, $location, $http) {
   };
 });
 
-app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
+app.controller('userCtrl', function($scope, $filter, $ionicPlatform, drtrackService) {
   $ionicPlatform.registerBackButtonAction(function () {
     navigator.app.backHistory();
   }, 100);
@@ -23,12 +26,13 @@ app.controller('userCtrl', function($scope, $filter, $ionicPlatform) {
     {name: 'Check-In', icon: 'icon ion-qr-scanner', link: '#/tab/check-in'},
     {name: 'Search', icon: 'icon ion-search', link: '#/tab/search/step1'},
     {name: 'Report', icon: 'icon ion-clipboard', link: '#/tab/report'},
-    {name: 'Settings', icon: 'icon ion-gear-a'},
     {name: 'Logout', icon: 'icon ion-log-out', link: '#/'}];
-
+  if (!drtrackService.getOperator()) {
+    $scope.dashboardOptions.unshift({name: 'Admin Panel', icon: 'icon ion-gear-a', link: '#/tab/admin'});
+  }
 });
 
-app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtrackFactory, $ionicPopup) {
+app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtrackFactory, $ionicPopup, $location) {
   function suggest_nationality(term) {
     var q = term.toLowerCase().trim();
     var results = [];
@@ -262,6 +266,19 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtra
           $rootScope.evacuee = data[0];
         });
     }
+  };
+  $scope.submitEvacuee = function() {
+    console.log($rootScope.evacuee)
+    drtrackFactory.submitEvacuee($rootScope.evacuee)
+      .then(function(data) {
+        //$rootScope.evacuee = [];
+        $location.path('/dashboard');
+      }, function(data) {
+        $ionicPopup.alert({
+          title: 'Error',
+          template: 'Something went wrong.'
+        });
+      });
   };
 });
 
