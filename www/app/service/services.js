@@ -1,5 +1,5 @@
 app.service('drtrackService', function($rootScope) {
-  $rootScope.evacuee = [];
+  $rootScope.evacuee = {};
   var isOperator = true;
 
   this.setOperator = function(data) {
@@ -52,7 +52,6 @@ app.factory('drtrackFactory', function($http, $q) {
   };
   var submitEvacuee = function(data) {
     var deferred = $q.defer();
-    console.log(data);
     $http.post(apiServer + '/api/evacuee', data)
       .success(function(data) {
         deferred.resolve(data);

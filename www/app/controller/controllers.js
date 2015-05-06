@@ -268,7 +268,6 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtra
     }
   };
   $scope.submitEvacuee = function() {
-    console.log($rootScope.evacuee)
     drtrackFactory.submitEvacuee($rootScope.evacuee)
       .then(function(data) {
         //$rootScope.evacuee = [];
