@@ -6,25 +6,26 @@ ion-view
       tab(heading='PP')
         .list
           label.item.item-input
-            input(type='text', ng-model='evacuee.passport', placeholder='Passport ID')
+            input(type='text', ng-model='search.passport', placeholder='Passport ID')
       tab(heading='DL')
         .list
           label.item.item-input
-            input(type='text', ng-model='evacuee.driverLic', placeholder='Driver License')
+            input(type='text', ng-model='search.driverLic', placeholder='Driver License')
       tab(heading='SSN')
         .list
           label.item.item-input
-            input(type='text', ng-model='evacuee.ssn', placeholder='SSN #')
+            input(type='text', ng-model='search.ssn', placeholder='SSN #')
     .list
       .item.item-divider Evacuee Info
       label.item.item-input
-        input(type='text', ng-model='evacuee.firstName', placeholder='First Name')
+        input(type='text', ng-model='search.firstName', placeholder='First Name')
       label.item.item-input
-        input(type='text', ng-model='evacuee.lastName', placeholder='Last Name')
+        input(type='text', ng-model='search.lastName', placeholder='Last Name')
       label.item.item-input
-        input(type='text', ng-model='evacuee.dob', placeholder='Date of Birth', pick-a-date='date', pick-a-date-options='dateOptions')
+        span.input-label Date of Birth
+        input(type='date', ng-model='search.dob')
     .row.clearBootstrap
       .col
         code-scan(data-class='button button-block button-calm clearMargin')
       .col
-        a.button.button-block.clearMargin.button-assertive(href='#/tab/search/step2', on-tap='getResult()') Search
+        a.button.button-block.clearMargin.button-assertive(on-tap='getResult()') Search

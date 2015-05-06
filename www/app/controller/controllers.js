@@ -270,7 +270,7 @@ app.controller('evacueeCtrl', function($scope, $rootScope, drtrackService, drtra
   $scope.submitEvacuee = function() {
     drtrackFactory.submitEvacuee($rootScope.evacuee)
       .then(function(data) {
-        //$rootScope.evacuee = [];
+        $rootScope.evacuee = {};
         $location.path('/dashboard');
       }, function(data) {
         $ionicPopup.alert({
@@ -316,18 +316,32 @@ app.controller('checkinCtrl', function($scope, $ionicPopup, drtrackFactory, $tim
   };
 });
 
-app.controller('searchCtrl', function($scope, $rootScope, drtrackService) {
-  $scope.results = [
-    {firstName: 'Jack', lastName: 'Doe', gender: 'Male'},
-    {firstName: 'Mike', lastName: 'Doe', gender: 'Male'},
-    {firstName: 'Will', lastName: 'Doe', gender: 'Male'}
-  ];
-  $scope.setEvacuee = function(index) {
-    $rootScope.evacuee = $scope.results[index];
-  }
+app.controller('searchCtrl', function($scope, $rootScope, drtrackService, $ionicPopup, drtrackFactory, $location) {
+  $scope.search = {};
+  $scope.setEvacuee = function(result) {
+    $rootScope.evacuee = result;
+  };
   $scope.scanDatas = [];
   $scope.edit = function() {
-    // Go to Evacuee Pages
-    alert('Edit');
+
+  };
+  $scope.getResult = function() {
+    if (Object.keys($scope.search).length > 0) {
+      drtrackFactory.searchEvacuee($scope.search)
+        .then(function(data) {
+          $rootScope.results = data;
+          $location.path('/tab/search/step2');
+        }, function(data) {
+          $ionicPopup.alert({
+            title: 'Error',
+            template: 'Something went wrong.'
+          });
+        });
+    } else {
+      $ionicPopup.alert({
+        title: 'Error',
+        template: 'Can\'t search empty fields'
+      });
+    }
   };
 });

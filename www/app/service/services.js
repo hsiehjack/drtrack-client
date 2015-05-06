@@ -1,5 +1,6 @@
 app.service('drtrackService', function($rootScope) {
   $rootScope.evacuee = {};
+  $rootScope.results = {};
   var isOperator = true;
 
   this.setOperator = function(data) {
@@ -60,10 +61,21 @@ app.factory('drtrackFactory', function($http, $q) {
       });
     return deferred.promise;
   };
+  var searchEvacuee = function(data) {
+    var deferred = $q.defer();
+    $http.post(apiServer + '/api/evacuee/search', data)
+      .success(function(data) {
+        deferred.resolve(data);
+      }).error(function(err) {
+        deferred.reject();
+      });
+    return deferred.promise;
+  };
   return {
     login: login,
     validateEvacuee: validateEvacuee,
     getManifest: getManifest,
-    submitEvacuee: submitEvacuee
+    submitEvacuee: submitEvacuee,
+    searchEvacuee: searchEvacuee
   };
 });

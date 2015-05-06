@@ -5,6 +5,6 @@ ion-view
     .title Search
   ion-content
     ion-list
-      ion-item(collection-repeat='person in results track by $index' href='#/tab/evacuee/step1' on-tap='setEvacuee($index)')
-        | {{person.firstName + ' ' + person.lastName}}
-        ion-option-button.ion-edit(on-tap='edit()') &nbsp;Edit
+      ion-item(collection-repeat='result in results track by $index', href='#/tab/evacuee/step1', on-tap='setEvacuee(result)')
+        | {{result.firstName}} {{result.lastName}}
+        ion-option-button.button-assertive.ion-ios-trash-outline(on-tap='delete()') &nbsp;Delete
