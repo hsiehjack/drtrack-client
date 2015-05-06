@@ -69,7 +69,7 @@ app.factory('drtrackFactory', function($http, $q) {
   };
   var deleteEvacuee = function(data) {
     var deferred = $q.defer();
-    $http.delete(apiServer + '/api/evacuee', data)
+    $http.delete(apiServer + '/api/evacuee/' + data._id)
       .success(function(data) {
         deferred.resolve(data);
       }).error(function(err) {

@@ -344,10 +344,10 @@ app.controller('searchCtrl', function($scope, $rootScope, drtrackService, $ionic
       });
     }
   };
-  $scope.delete = function(code) {
-    drtrackFactory.deleteEvacuee(code)
+  $scope.delete = function(data, index) {
+    drtrackFactory.deleteEvacuee(data)
       .then(function(data) {
-        console.log("success");
+        $scope.results.splice(index, 1)
       }, function(data) {
         $ionicPopup.alert({
           title: 'Error',
