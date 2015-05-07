@@ -413,22 +413,29 @@ app.controller('reportCtrl', function($scope, drtrackFactory, $ionicPopup, drtra
     };
     $scope.setEvacueeCode = function(code) {
       $rootScope.evacueeCode = code;
-      drtrackFactory.getEvacueeCode($rootScope.evacueeCode)
-        .then(function(data) {
-          console.log(data);
-          $scope.evacueeInfos = [];
-          for(var k in data) {
-            var obj = {};
-            obj[k] = data[k];
-            $scope.evacueeInfos.push(obj);
-          }
-          console.log($scope.evacueeInfos);
-          $location.path('/report/step3')
-        }, function(err) {
-          $ionicPopup.alert({
-            title: 'Evacuee',
-            template: 'No evacuee Found'
-          });
-      });
+      $location.path('/report/step3');
     };
+
+    drtrackFactory.getEvacueeCode($rootScope.evacueeCode)
+      .then(function(data) {
+        $scope.evacueeInfos = data;
+        for(var k in $scope.evacueeInfos) {
+          if(k == '__v' || k == '_id') {
+            delete $scope.evacueeInfos[k];
+          }
+        }
+        // console.log(data);
+        // $scope.evacueeInfos = [];
+        // for(var k in data) {
+        //   var obj = {};
+        //   obj[k] = data[k];
+        //   $scope.evacueeInfos.push(obj);
+        // }
+        console.log($scope.evacueeInfos);
+      }, function(err) {
+        $ionicPopup.alert({
+          title: 'Evacuee',
+          template: 'No evacuee Found'
+        });
+    });
 });

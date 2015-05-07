@@ -5,7 +5,7 @@ ion-view
     .title Evacuee Info
   ion-content
     ion-list
-      ion-item(ng-repeat='eva in evacueeInfos track by $index')
-        | {{eva}}
+      ion-item(collection-repeat='(key, value) in evacueeInfos')
+        | {{key}} {{value}}
   ion-footer-bar.bar-positive(align-title='center')
     a.ion-home.title(href='#/dashboard') &nbsp;Dashboard
